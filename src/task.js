@@ -1,24 +1,21 @@
 export { Task } 
 
-const STATUS_INITIAL = 0;
-const STATUS_IN_PROGRESS = 1;
-const STATUS_DONE = 2;
-
 const Task = (title, description = '', dueDate, priority) => {
 
   let commentManager = CommentManager()
-  let status = STATUS_INITIAL;
+  let isDone = false;
 
   return Object.assign({
     title,
-    description
+    description,
+    isDone
     },
     commentManager
   )
 }
 
 function CommentManager() {
-  let comments = ['Hello'];
+  let comments = [];
 
   function getComments(){
     return comments
@@ -33,5 +30,3 @@ function CommentManager() {
     addComment
   }
 }
-
-
