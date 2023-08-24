@@ -24,6 +24,7 @@ const Folder = (title, color = null, icon = null) => {
   return {
     title,
     color,
+    icon,
     addTask,
     getTasks,
     removeTask
