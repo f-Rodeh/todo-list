@@ -2,8 +2,7 @@ export { Task }
 
 const Task = ( title, description = '', dueDate, priority = 0 ) => {
 
-  let commentManager = CommentManager()
-
+  const commentManager = CommentManager()
   const dateManager = DateManager()
   dateManager.setDueDate( dueDate )
 
