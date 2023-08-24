@@ -10,6 +10,13 @@ const Folder = (title) => {
     tasks.push(task);
   }
 
+  function removeTask( taskUid ){
+    const isTarget = (task) =>  task.uid === taskUid;
+    const index = tasks.findIndex( isTarget )
+    console.log({index})
+    if (index >= 0) tasks.splice(index, 1)
+  }
+
   function getTasks(){
     return tasks
   }
@@ -17,7 +24,8 @@ const Folder = (title) => {
   return {
     title,
     addTask,
-    getTasks
+    getTasks,
+    removeTask
   }
 }
 
