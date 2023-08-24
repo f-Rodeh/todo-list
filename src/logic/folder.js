@@ -1,6 +1,6 @@
 export { Folder }
 
-const Folder = (title, color = null,) => {
+const Folder = (title, color = null, icon = null) => {
 
   let tasks = []
 
