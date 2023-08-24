@@ -1,6 +1,6 @@
 export { Task } 
 
-const Task = (title, description = '', dueDate, priority) => {
+const Task = ( title, description = '', dueDate, priority = 0 ) => {
 
   let commentManager = CommentManager()
   let isDone = false;
@@ -8,7 +8,8 @@ const Task = (title, description = '', dueDate, priority) => {
   return Object.assign({
     title,
     description,
-    isDone
+    isDone,
+    priority
     },
     commentManager
   )
