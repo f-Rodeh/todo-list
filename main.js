@@ -1,1 +1,1 @@
-console.log("TODO LIST");
+(()=>{"use strict";const t=((t,e="",n,o)=>{let s=function(){let t=["Hello"];return{getComments:function(){return t},addComment:function(e){t.push(e)}}}();return Object.assign({title:t,description:e},s)})("Example","This is an example task");console.log("comments: ",t.getComments()),t.addComment("WOW!"),console.log("comments: ",t.getComments())})();
