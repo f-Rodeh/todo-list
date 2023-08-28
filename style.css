@@ -28,3 +28,21 @@ header {
   align-items: center;
   gap: 12px;
 }
+
+nav {
+  padding: 24px;
+}
+
+nav span {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 24px;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+nav span:not(:first-child)::before {
+  content: '/';
+  position: absolute;
+  left: 0;
+}

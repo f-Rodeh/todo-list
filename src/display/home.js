@@ -17,8 +17,25 @@ const logoTxt = makeElement({
 
 header.append(logoImg, logoTxt);
 
+const navBar = makeElement({type: 'nav'});
+navBar.append(
+  makeElement({
+    type: 'span',
+    textContent: 'My Folders'
+  }),
+  makeElement({
+    type: 'span',
+    textContent: 'Personal'
+  }),
+  makeElement({
+    type: 'span',
+    textContent: 'Do the dishes'
+  })
+)
+
 const loadPage = () => {
   document.body.append(
     header,
+    navBar
   )
 }
