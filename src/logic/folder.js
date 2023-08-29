@@ -3,6 +3,7 @@ export { Folder }
 const Folder = (title, color = null, icon = null) => {
 
   let tasks = []
+  const uid = generateUid()
 
   function addTask(task) {
     const uid = generateUid( tasks );
@@ -25,6 +26,7 @@ const Folder = (title, color = null, icon = null) => {
     title,
     color,
     icon,
+    uid,
     addTask,
     getTasks,
     removeTask
@@ -32,6 +34,7 @@ const Folder = (title, color = null, icon = null) => {
 }
 
 function isIdAvailable( array, id ){
+  if (!array) return true
   return array.every((task) => task.id !== id );
 }
 

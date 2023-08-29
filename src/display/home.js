@@ -1,21 +1,18 @@
+import { makeDashboard } from "./dashboard";
 import { makeElement } from "./dom-utility";
-export { loadPage }
+export { loadPage, setPageContent }
 
-const header = makeElement({
-  type: 'header'
-});
-
-const logoImg = makeElement({
-  type: 'img', 
-  src: 'https://img.logoipsum.com/246.svg'
-});
-
-const logoTxt = makeElement({
-  type: 'span', 
-  textContent: 'TO DEW'
-});
-
-header.append(logoImg, logoTxt);
+const header = makeElement({type: 'header'});
+header.append(
+  makeElement({
+    type: 'img', 
+    src: 'https://img.logoipsum.com/246.svg'
+  }),
+  makeElement({
+    type: 'span', 
+    textContent: 'TO DEW'
+  })
+)
 
 const navBar = makeElement({type: 'nav'});
 navBar.append(
@@ -33,9 +30,17 @@ navBar.append(
   })
 )
 
-const loadPage = () => {
+let main = makeElement({type: 'main'});
+
+function loadPage() {
   document.body.append(
     header,
-    navBar
+    navBar,
+    main
   )
+}
+
+function setPageContent( element ) {
+  main.replaceWith( element )
+  main = element
 }
