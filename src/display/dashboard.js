@@ -16,16 +16,22 @@ function makeDashboard( folders ){
 
 function makeFolder( folder ){
   const output = makeElement({
-    type: 'div'
+    type: 'div',
+    classList: ['folder-card']
   })
   
-  output.classList.add('folder-card')
   output.dataset.uid = folder.uid
+  const itemCount = `${folder.getTasks.length} items`
 
   output.append(
     makeElement({
       type: 'h3',
       textContent: folder.title
+    }),
+    makeElement({
+      type: 'span',
+      classList: ['subtitle'],
+      textContent: itemCount
     })
   )
   return output
