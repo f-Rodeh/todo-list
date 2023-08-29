@@ -58,22 +58,38 @@ main {
   gap: 24px;
 }
 
-.folder-card {
+.new-folder {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 12px;
+}
+
+.new-folder ion-icon {
+  font-size: 2.5rem;
+  --ionicon-stroke-width: 42px;
+}
+
+.new-folder .subtitle {
+  margin-bottom: 6px;
+}
+
+.card {
   background-color: var(--surface);
   border-radius: 24px;
   height: 180px;
   padding: 24px 32px;
 }
 
-.folder-card:hover {
+.card:hover {
   cursor: pointer;
   box-shadow: 6px 6px 6px rgba(0,0,0,0.6);
 }
 
-.folder-card h3 {
+.card .title {
   margin: 0;
 }
 
-.folder-card .subtitle {
+.card .subtitle {
   color: var(--txt-low-contrast);
 }
