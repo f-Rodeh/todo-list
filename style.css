@@ -64,6 +64,11 @@ main {
   padding: 24px 32px;
 }
 
+.folder-card:hover {
+  cursor: pointer;
+  box-shadow: 6px 6px 6px rgba(0,0,0,0.6);
+}
+
 .folder-card h3 {
   margin: 0;
 }
