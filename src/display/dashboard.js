@@ -16,10 +16,17 @@ function makeDashboard( folders ){
 
 function makeFolder( folder ){
   const output = makeElement({
-    type: 'div',
-    textContent: folder.title,
+    type: 'div'
   })
+  
   output.classList.add('folder-card')
   output.dataset.uid = folder.uid
+
+  output.append(
+    makeElement({
+      type: 'h3',
+      textContent: folder.title
+    })
+  )
   return output
 }

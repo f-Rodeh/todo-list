@@ -29,8 +29,8 @@ header {
   gap: 12px;
 }
 
-nav {
-  padding: 24px;
+nav, main {
+  margin: 32px 48px;
 }
 
 nav span {
@@ -41,8 +41,29 @@ nav span {
   font-size: 1.2rem;
 }
 
+nav span:first-child {
+  padding-left: 0;
+}
+
 nav span:not(:first-child)::before {
   content: '/';
   position: absolute;
   left: 0;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) );
+  gap: 24px;
+}
+
+.folder-card {
+  background-color: var(--surface);
+  border-radius: 24px;
+  height: 180px;
+  padding: 24px 32px;
+}
+
+.folder-card h3 {
+  margin: 0;
 }
