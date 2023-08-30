@@ -44,7 +44,7 @@ function DateManager(){
 
     if( dateIsValid(newDate) ) {
       dueDate = newDate
-    } else console.error('Date not set: Invalid date');
+    } else console.warn('Date not set: Invalid date');
   }
   
   function getDueDate(){

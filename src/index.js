@@ -5,7 +5,9 @@ import { makeDashboard } from "./display/dashboard";
 
 loadPage()
 
-const folder1 = Folder('Example');
+const task1 = Task('Task 1');
+const folder1 = Folder('Example 1');
 const folder2 = Folder('Example 2');
-const element = makeDashboard([folder1, folder2])
-setPageContent( element )
+folder1.addTask(task1)
+const dashboard = makeDashboard([folder1, folder2])
+setPageContent( dashboard )

@@ -23,21 +23,21 @@ function makeDashboard( folders ){
   if (!folders) return main
 
   folders.forEach( item => {
-    const element = makeFolder( item )
-    main.append( element )
+    const card = makeFolderCard( item )
+    main.append( card )
   });
 
   return main
 }
 
-function makeFolder( folder ){
+function makeFolderCard( folder ){
   const output = makeElement({
     type: 'div',
     classList: ['folder card']
   })
   
   output.dataset.uid = folder.uid
-  const itemCount = `${folder.getTasks.length} items`
+  let itemCount = folder.getTasks().length
 
   output.append(
     makeElement({
@@ -48,8 +48,13 @@ function makeFolder( folder ){
     makeElement({
       type: 'span',
       classList: ['subtitle'],
-      textContent: itemCount
+      textContent: formatItemCount(itemCount)
     })
   )
   return output
+}
+
+function formatItemCount( count ){
+  const suffix = count === 1 ? 'task' : 'tasks'
+  return `${count} ${suffix}`
 }
