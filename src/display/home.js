@@ -19,14 +19,6 @@ navBar.append(
   makeElement({
     type: 'span',
     textContent: 'My Folders'
-  }),
-  makeElement({
-    type: 'span',
-    textContent: 'Personal'
-  }),
-  makeElement({
-    type: 'span',
-    textContent: 'Do the dishes'
   })
 )
 
