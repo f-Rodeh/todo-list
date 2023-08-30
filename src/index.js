@@ -9,9 +9,11 @@ loadPage()
 
 // hardcoded tasks/folders
 const task1 = Task('Task 1');
+const task2 = Task('Task 2', 'This is a very long text that resembles a description')
 const folder1 = Folder('Example 1');
 const folder2 = Folder('Example 2');
 folder1.addTask(task1)
+folder1.addTask(task2)
 let folders = [folder1, folder2];
 
 const navBar = document.querySelector('nav')

@@ -52,7 +52,7 @@ nav span:not(:first-child)::before {
   left: 0;
 }
 
-main {
+main.dashboard {
   display: grid;
   grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) );
   gap: 24px;
@@ -74,10 +74,17 @@ main {
   margin-bottom: 6px;
 }
 
+.dashboard .card {
+  height: 180px;
+}
+
+#task-list .card {
+  margin: 24px 15vw;
+}
+
 .card {
   background-color: var(--surface);
   border-radius: 24px;
-  height: 180px;
   padding: 24px 32px;
 }
 

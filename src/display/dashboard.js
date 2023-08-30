@@ -18,6 +18,7 @@ buttonNewFolder.append(
 
 function makeDashboard( folders ){
   const main = makeElement({type: 'main'})
+  main.classList.add('dashboard')
   main.append( buttonNewFolder )
 
   if (!folders) return main
