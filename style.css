@@ -5,6 +5,18 @@
   --surface: #222222;
   --main-txt: #e6e6fa;
   --txt-low-contrast: #a5a5a5;
+
+  --gray: #505060;
+  --red: #ff4444;
+  --pink: #fe3b6f;
+  --sand: #FFA589;
+  --orange: #ff6d1e;
+  --yellow: #eacc25;
+  --green: #aae818;
+  --teal: #329b93;
+  --blue: #5454fd;
+  --purple: #7700ff;
+  --purple-pink: #c832ff;
 }
 
 * {
