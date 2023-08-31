@@ -71,34 +71,34 @@ function getDateProperties( date ){
 function emptyDate(){
   return {
     msg: 'No due date',
-    color: '#505060'
+    color: 'var(--gray)'
   }
 }
 
 function pastDate( date ){
   return {
     msg: `Due ${formatDistanceToNow(date)} ago`,
-    color: '#ff0000'
+    color: 'var(--red)'
   }
 }
 
 function todayDate( date ){
   return {
     msg: `Due today`,
-    color: '#505060'
+    color: 'var(--purple-pink)'
   }
 }
 
 function thisWeekDate( date ){
   return {
     msg: `Due by ${format(date, 'EEEE')}`,
-    color: '#505060'
+    color: 'var(--teal)'
   }
 }
 
 function genericDate( date ){
   return {
     msg: `Due by ${format(date, 'MMM dd')}`,
-    color: '#505060'
+    color: 'var(--blue)'
   }
 }

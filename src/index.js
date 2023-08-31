@@ -8,12 +8,18 @@ import { makeElement } from "./display/dom-utility";
 loadPage()
 
 // hardcoded tasks/folders
-const task1 = Task('Task 1', '', '2023-5-9');
-const task2 = Task('Task 2', 'This is a very long text that resembles a description')
+const task1 = Task('Task 1', '');
+const task2 = Task('Task 2', '', '2023-5-9');
+const task3 = Task('Task 3', '', '2023-8-31');
+const task4 = Task('Task 4', '', '2023-09-1');
+const task5 = Task('Task 5', '', '2023-12-11');
 const folder1 = Folder('Example 1');
 const folder2 = Folder('Example 2');
 folder1.addTask(task1)
 folder1.addTask(task2)
+folder1.addTask(task3)
+folder1.addTask(task4)
+folder1.addTask(task5)
 let folders = [folder1, folder2];
 
 const navBar = document.querySelector('nav')

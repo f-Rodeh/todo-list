@@ -6,17 +6,13 @@
   --main-txt: #e6e6fa;
   --txt-low-contrast: #a5a5a5;
 
-  --gray: #505060;
-  --red: #ff4444;
-  --pink: #fe3b6f;
+  --gray: #5d666f;
+  --red: #c70f34;
   --sand: #FFA589;
-  --orange: #ff6d1e;
-  --yellow: #eacc25;
-  --green: #aae818;
-  --teal: #329b93;
-  --blue: #5454fd;
-  --purple: #7700ff;
-  --purple-pink: #c832ff;
+  --teal: #197669;
+  --blue: #1f5c7a;
+  --purple: #4B0082;
+  --purple-pink: #a00379;
 }
 
 * {
