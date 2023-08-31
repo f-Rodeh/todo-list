@@ -1,4 +1,4 @@
-import { format, formatDistanceToNow, formatRelative, isFuture, isPast, isThisWeek, isToday } from "date-fns";
+import { formatDistanceToNow, formatRelative, isFuture, isPast, isToday } from "date-fns";
 import { makeElement } from "./dom-utility"
 
 export { makeFolderView }
@@ -60,13 +60,17 @@ function displayDueDate( date ) {
 }
 
 function getDateDescriptor( date ){
-  if( isToday(date) ){
+  if( isPast(date) ){
+    return 'Past Due'
+  } else if( isToday(date) ){
     return 'Due today'
-  } else if( isPast(date) ){
-    return `Due ${formatDistanceToNow(date)} ago`
   } else if( isThisWeek(date) ){
-    return `Due by ${format(date, 'eeee')}`
+    return `Due by ${date.toLocaleString('en-us', {weekday: 'long'})}`
   } else {
-    return `Due by ${format(date, 'MMM dd')}`
+    return `Due by MMMM dddd`
   }
+}
+
+function isThisWeek( date ){
+  return false
 }
