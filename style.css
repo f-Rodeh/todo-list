@@ -100,3 +100,10 @@ main.dashboard {
 .card .subtitle {
   color: var(--txt-low-contrast);
 }
+
+.due-date {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: fit-content;
+}

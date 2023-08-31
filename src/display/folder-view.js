@@ -48,13 +48,8 @@ function limitCharacters( maxLength, string = ''){
 }
 
 function displayDueDate( date ) {
-  const output = document.createElement('div')
-  output.classList.add('due-date')
-  if( !date ){
-    output.textContent = 'No due date'
-    return output
-  }
-
+  const output = document.createElement('div');
+  output.classList.add('due-date');
   const dateProperties = getDateProperties(date);
   output.textContent = dateProperties.msg;
   output.style.backgroundColor = dateProperties.color;
@@ -64,38 +59,46 @@ function displayDueDate( date ) {
 
 function getDateProperties( date ){
   const dateProperties = 
-    isToday(date) ? todayDateObject(date) :
-    isPast(date) ? pastDateObject(date) :
-    isThisWeek(date) ? thisWeekDateObject :
-    genericDateObject(date);
+    (!date) ? emptyDate() :
+    isToday(date) ? todayDate(date) :
+    isPast(date) ? pastDate(date) :
+    isThisWeek(date) ? thisWeekDate(date) :
+    genericDate(date);
 
   return dateProperties;
 }
 
-function pastDateObject( date ){
+function emptyDate(){
+  return {
+    msg: 'No due date',
+    color: '#505060'
+  }
+}
+
+function pastDate( date ){
   return {
     msg: `Due ${formatDistanceToNow(date)} ago`,
-    color: '#ffffff'
+    color: '#ff0000'
   }
 }
 
-function todayDateObject( date ){
+function todayDate( date ){
   return {
     msg: `Due today`,
-    color: '#ffffff'
+    color: '#505060'
   }
 }
 
-function thisWeekDateObject( date ){
+function thisWeekDate( date ){
   return {
     msg: `Due by ${format(date, 'EEEE')}`,
-    color: '#ffffff'
+    color: '#505060'
   }
 }
 
-function genericDateObject( date ){
+function genericDate( date ){
   return {
     msg: `Due by ${format(date, 'MMM dd')}`,
-    color: '#ffffff'
+    color: '#505060'
   }
 }
