@@ -3,6 +3,20 @@ import { displayDueDate } from "./date-displayer";
 
 export { makeFolderView }
 
+const buttonNewTask = makeElement({
+  type: 'div',
+  classList: ['new-task card']
+})
+
+buttonNewTask.append(
+  makeIcon('add-outline'),
+  makeElement({
+    type: 'span',
+    textContent: 'New Task',
+    classList: ['title']
+  }),
+)
+
 function makeFolderView( folder ){
   const main = document.createElement('main')
 
@@ -14,6 +28,7 @@ function makeFolderView( folder ){
 
 function makeTaskListDisplay( taskList ){
   const output = document.createElement('section');
+  output.append(buttonNewTask)
   output.id = 'task-list'
   taskList.forEach(task => {
     const card = makeTaskCard( task )
@@ -35,6 +50,7 @@ function makeTaskCard( task ) {
 
   divLeft.append(
     title,
+    displayPriority(task.priority),
     makeElement({
       type: 'span',
       classList: ['subtitle'],
@@ -42,10 +58,14 @@ function makeTaskCard( task ) {
     }),
   )
 
+  const divRight = makeElement({type: 'div', classList: ['right']})
+  divRight.append(
+    displayDueDate(task.getDueDate())
+  )
+
   output.append(
     divLeft,
-    displayPriority(task.priority),
-    displayDueDate(task.getDueDate()),
+    divRight
   )
 
   return output
@@ -58,7 +78,10 @@ function limitCharacters( maxLength, string = ''){
 }
 
 function displayPriority( priorityNumber ){
-  const output = document.createElement('div')
+  const output = document.createElement('span')
+  output.classList.add('priority')
+  if(priorityNumber > 0) output.textContent = 'Important '
+  
   for (let i = 0; i < priorityNumber; i++) {
     const priorityIcon = makeIcon('alert-circle-outline');
     output.append(priorityIcon)

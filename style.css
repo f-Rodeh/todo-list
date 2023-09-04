@@ -8,8 +8,9 @@
 
   --gray: #5d666f;
   --red: #c70f34;
+  --light-blue: hsl(172, 50%, 55%);
   --sand: #FFA589;
-  --teal: #197669;
+  --teal: #145f55;
   --blue: #1f5c7a;
   --purple: #4B0082;
   --purple-pink: #a00379;
@@ -82,6 +83,17 @@ main.dashboard {
   margin-bottom: 6px;
 }
 
+.new-task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--txt-low-contrast);
+}
+
+.new-task ion-icon {
+  --ionicon-stroke-width: 42px;
+}
+
 .dashboard .card {
   height: 180px;
 }
@@ -118,6 +130,23 @@ main.dashboard {
   border-radius: 8px;
   font-size: 0.9rem;
   width: fit-content;
-  margin-top: 12px;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--light-blue);
+  margin-bottom: 6px;
+}
+
+.priority :nth-child(1){
+  padding-left: 6px;
+}
+
+.right {
   margin-left: auto;
+  text-align: right;
+  margin-top: 12px;
+  width: fit-content;
 }
