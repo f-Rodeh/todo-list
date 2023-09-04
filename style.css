@@ -39,7 +39,7 @@ header {
 }
 
 nav, main {
-  margin: 32px 48px;
+  margin: 32px min(5vw, 48px);
 }
 
 nav span {
@@ -87,9 +87,7 @@ main.dashboard {
 }
 
 #task-list .card {
-  margin: 24px 15vw;
-  flex-wrap: wrap;
-  gap: 24px;
+  margin: 24px max(10vw, 24px);;
 }
 
 #task-list .right {
