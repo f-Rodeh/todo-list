@@ -1,5 +1,5 @@
-import { format, formatDistanceToNow, formatRelative, isFuture, isPast, isThisWeek, isToday } from "date-fns";
-import { makeElement } from "./dom-utility"
+import { makeElement, makeIcon } from "./dom-utility"
+import { displayDueDate } from "./date-displayer";
 
 export { makeFolderView }
 
@@ -26,79 +26,42 @@ function makeTaskCard( task ) {
   const output = document.createElement('div');
   output.classList.add('card')
 
-  output.append(
-    makeElement({
-      type: 'h3',
-      classList: ['title'],
-      textContent: task.title
-    }),
+  const divLeft = makeElement({type:'div', classList:['left']});
+  const title = makeElement({
+    type: 'h3',
+    classList: ['title'],
+    textContent: limitCharacters(32, task.title)
+  })
+
+  divLeft.append(
+    title,
     makeElement({
       type: 'span',
       classList: ['subtitle'],
       textContent: limitCharacters(50, task.description)
     }),
-    displayDueDate( task.getDueDate() )
   )
+
+  output.append(
+    divLeft,
+    displayPriority(task.priority),
+    displayDueDate(task.getDueDate()),
+  )
+
   return output
 }
 
 function limitCharacters( maxLength, string = ''){
   if(!string) return
+  if(string.length <= maxLength ) return string
   return string.substring(0, maxLength-3) + '...'
 }
 
-function displayDueDate( date ) {
-  const output = document.createElement('div');
-  output.classList.add('due-date');
-  const dateProperties = getDateProperties(date);
-  output.textContent = dateProperties.msg;
-  output.style.backgroundColor = dateProperties.color;
-
+function displayPriority( priorityNumber ){
+  const output = document.createElement('div')
+  for (let i = 0; i < priorityNumber; i++) {
+    const priorityIcon = makeIcon('alert-circle-outline');
+    output.append(priorityIcon)
+  }
   return output
-}
-
-function getDateProperties( date ){
-  const dateProperties = 
-    (!date) ? emptyDate() :
-    isToday(date) ? todayDate(date) :
-    isPast(date) ? pastDate(date) :
-    isThisWeek(date) ? thisWeekDate(date) :
-    genericDate(date);
-
-  return dateProperties;
-}
-
-function emptyDate(){
-  return {
-    msg: 'No due date',
-    color: 'var(--gray)'
-  }
-}
-
-function pastDate( date ){
-  return {
-    msg: `Due ${formatDistanceToNow(date)} ago`,
-    color: 'var(--red)'
-  }
-}
-
-function todayDate( date ){
-  return {
-    msg: `Due today`,
-    color: 'var(--purple-pink)'
-  }
-}
-
-function thisWeekDate( date ){
-  return {
-    msg: `Due by ${format(date, 'EEEE')}`,
-    color: 'var(--teal)'
-  }
-}
-
-function genericDate( date ){
-  return {
-    msg: `Due by ${format(date, 'MMM dd')}`,
-    color: 'var(--blue)'
-  }
 }

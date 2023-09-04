@@ -88,6 +88,12 @@ main.dashboard {
 
 #task-list .card {
   margin: 24px 15vw;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+#task-list .right {
+  margin-left: auto;
 }
 
 .card {
@@ -114,4 +120,6 @@ main.dashboard {
   border-radius: 8px;
   font-size: 0.9rem;
   width: fit-content;
+  margin-top: 12px;
+  margin-left: auto;
 }
