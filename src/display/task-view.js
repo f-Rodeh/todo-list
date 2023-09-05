@@ -1,4 +1,4 @@
-import { format, isValid } from "date-fns";
+import { format, isValid, parse } from "date-fns";
 
 export { makeTaskView }
 
@@ -8,19 +8,20 @@ const dueDateElement = document.createElement('p');
 
 function makeTaskView( task ){
   const main = document.createElement('main')
-  const dueDate = task.getDueDate;
+  console.log('dueDate: ', task.getDueDate())
+  const dueDate = task.getDueDate();
 
   titleElement.textContent = task.title;
   descriptionElement.textContent = task.description;
-  if( isValid(dueDate) ) {
-    dueDateElement.textContent = `Due date: ${format(dueDate, 'YYYY/MMM/dd')}`
-  }
+  dueDateElement.textContent = isValid(dueDate) ?
+    `Due date: ${format(dueDate, 'MMM dd, yyyy')}` :
+    `No due date`
 
   main.append(
     titleElement,
-    descriptionElement,
     dueDateElement,
-    notesDisplayer()
+    descriptionElement,
+    notesDisplayer(),
   )
   return main
 }

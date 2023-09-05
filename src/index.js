@@ -21,6 +21,7 @@ folder1.addTask(task3)
 folder1.addTask(task4)
 folder1.addTask(task5)
 let folders = [folder1, folder2];
+let currentFolder;
 
 const navBar = document.querySelector('nav')
 
@@ -31,8 +32,8 @@ const folderCards = document.querySelectorAll('.folder');
 folderCards.forEach((folder) => {
   folder.addEventListener('click', () => {
     const id = folder.dataset.uid
-    const _folder = findFolderById(id)
-    openFolderView( _folder )
+    currentFolder = findFolderById(id)
+    openFolderView( currentFolder )
   })
 })
 
@@ -46,8 +47,8 @@ function updateTaskCardsListener(){
 function addTaskListener( task ){
   task.addEventListener('click', () => {
     const id = task.dataset.uid
-    // const _task = findTaskById(id)
-    openTaskView( task1 )
+    const _task = findTaskById(id)
+    openTaskView( _task )
   })
 }
 
@@ -79,5 +80,8 @@ function findFolderById( id ){
 }
 
 function findTaskById( id ){
-  return folders.find((element) => element.uid === id)
+  if(!currentFolder) throw new Error('No folder currently open')
+  const tasks = currentFolder.getTasks()
+  console.log({tasks})
+  return tasks.find((element) => element.uid === id)
 }

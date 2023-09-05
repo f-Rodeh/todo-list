@@ -40,6 +40,7 @@ function makeTaskListDisplay( taskList ){
 function makeTaskCard( task ) {
   const output = document.createElement('div');
   output.classList.add('task', 'card')
+  output.dataset.uid = task.uid;
 
   const divLeft = makeElement({type:'div', classList:['left']});
   const title = makeElement({
