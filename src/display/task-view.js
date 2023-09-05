@@ -8,7 +8,6 @@ const dueDateElement = document.createElement('p');
 
 function makeTaskView( task ){
   const main = document.createElement('main')
-  console.log('dueDate: ', task.getDueDate())
   const dueDate = task.getDueDate();
 
   titleElement.textContent = task.title;

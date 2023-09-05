@@ -1,4 +1,3 @@
-import { makeDashboard } from "./dashboard";
 import { makeElement } from "./dom-utility";
 export { loadPage, setPageContent }
 
@@ -15,12 +14,6 @@ header.append(
 )
 
 const navBar = makeElement({type: 'nav'});
-navBar.append(
-  makeElement({
-    type: 'span',
-    textContent: 'My Folders'
-  })
-)
 
 let main = makeElement({type: 'main'});
 

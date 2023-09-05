@@ -4,6 +4,7 @@ import { loadPage, setPageContent } from "./display/home";
 import { makeDashboard } from "./display/dashboard";
 import { makeFolderView } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
+import { addTab } from "./display/tab-navigator";
 
 loadPage()
 
@@ -25,8 +26,9 @@ let currentFolder;
 
 const navBar = document.querySelector('nav')
 
-const dashboard = makeDashboard([folder1, folder2])
+const dashboard = makeDashboard(folders)
 setPageContent( dashboard )
+addTab( 'My Folders', dashboard )
 
 const folderCards = document.querySelectorAll('.folder');
 folderCards.forEach((folder) => {
@@ -60,19 +62,22 @@ function addNavTab(textContent, uid){
 }
 
 function openFolderView( folder ){
-  addNavTab(folder.title, folder.uid)
+  // addNavTab(folder.title, folder.uid)
 
   const folderView = makeFolderView( folder );
   setPageContent( folderView )
+  addTab(folder.title, folderView);
+
 
   updateTaskCardsListener();
 }
 
 function openTaskView( task ){
-  addNavTab(task.title, task.uid)
+  // addNavTab(task.title, task.uid)
 
   const taskView = makeTaskView( task );
   setPageContent( taskView )
+  addTab( task.title, taskView )
 }
 
 function findFolderById( id ){
@@ -82,6 +87,5 @@ function findFolderById( id ){
 function findTaskById( id ){
   if(!currentFolder) throw new Error('No folder currently open')
   const tasks = currentFolder.getTasks()
-  console.log({tasks})
   return tasks.find((element) => element.uid === id)
 }
