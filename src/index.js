@@ -3,7 +3,7 @@ import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
 import { makeDashboard } from "./display/dashboard";
 import { makeFolderView } from "./display/folder-view";
-import { makeElement } from "./display/dom-utility";
+import { makeTaskView } from "./display/task-view";
 
 loadPage()
 
@@ -36,16 +36,48 @@ folderCards.forEach((folder) => {
   })
 })
 
-function openFolderView( folder ){
-  const navTab = document.createElement('span')
-  navTab.textContent = folder.title
-  navTab.dataset.uid = folder.uid
+function updateTaskCardsListener(){
+  let taskCards = document.querySelectorAll('.task');
+  taskCards.forEach((task) => {
+    addTaskListener( task )
+  })
+}
 
+function addTaskListener( task ){
+  task.addEventListener('click', () => {
+    const id = task.dataset.uid
+    // const _task = findTaskById(id)
+    openTaskView( task1 )
+  })
+}
+
+function addNavTab(textContent, uid){
+  const navTab = document.createElement('span')
+  navTab.textContent = textContent
+  navTab.dataset.uid = uid
   navBar.append( navTab )
+}
+
+function openFolderView( folder ){
+  addNavTab(folder.title, folder.uid)
+
   const folderView = makeFolderView( folder );
   setPageContent( folderView )
+
+  updateTaskCardsListener();
+}
+
+function openTaskView( task ){
+  addNavTab(task.title, task.uid)
+
+  const taskView = makeTaskView( task );
+  setPageContent( taskView )
 }
 
 function findFolderById( id ){
+  return folders.find((element) => element.uid === id)
+}
+
+function findTaskById( id ){
   return folders.find((element) => element.uid === id)
 }

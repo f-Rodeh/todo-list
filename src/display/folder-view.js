@@ -39,7 +39,7 @@ function makeTaskListDisplay( taskList ){
 
 function makeTaskCard( task ) {
   const output = document.createElement('div');
-  output.classList.add('card')
+  output.classList.add('task', 'card')
 
   const divLeft = makeElement({type:'div', classList:['left']});
   const title = makeElement({
