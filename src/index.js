@@ -1,10 +1,11 @@
 import { Folder } from "./logic/folder";
 import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
-import { makeDashboard } from "./display/dashboard";
-import { FolderView } from "./display/folder-view";
+import { addFolder, buttonNewFolder, makeDashboard } from "./display/dashboard";
+import { FolderView, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
+import { DateInput, NumberInput, TextInput, promptQuestionnaire } from "./display/input-prompter";
 
 loadPage()
 
@@ -24,8 +25,6 @@ folder1.addTask(task5)
 let folders = [folder1, folder2];
 let currentFolder;
 
-const navBar = document.querySelector('nav')
-
 const dashboard = makeDashboard(folders)
 setPageContent( dashboard )
 addTab( 'My Folders', dashboard )
@@ -39,17 +38,14 @@ folderCards.forEach((folder) => {
   })
 })
 
-function updateTaskCardsListener(){
+function setTaskCardListeners(){
   let taskCards = document.querySelectorAll('.task');
-  taskCards.forEach((task) => {
-    addTaskListener( task )
-  })
+  taskCards.forEach((card) => addTaskListener( card ))
 }
 
-function addTaskListener( task ){
-  task.addEventListener('click', () => {
-    const id = task.dataset.uid
-    const _task = findTaskById(id)
+function addTaskListener( taskCard ){
+  taskCard.addEventListener('click', () => {
+    const _task = findTaskById( taskCard.dataset.uid )
     openTaskView( _task )
   })
 }
@@ -59,7 +55,7 @@ function openFolderView( folder ){
   setPageContent( folderView )
   addTab(folder.title, folderView);
 
-  updateTaskCardsListener();
+  setTaskCardListeners();
 }
 
 function openTaskView( task ){
@@ -76,4 +72,26 @@ function findTaskById( id ){
   if(!currentFolder) throw new Error('No folder currently open')
   const tasks = currentFolder.getTasks()
   return tasks.find((element) => element.uid === id)
+}
+
+const FolderQuestionnaire = {title: TextInput('Title')}
+const TaskQuestionnaire = {
+  title: TextInput('Title'),
+  subtitle: TextInput('Subtitle'),
+  dueDate: DateInput('Due Date'),
+  priority: NumberInput('Priority')
+}
+
+buttonNewFolder.addEventListener('click', makeNewFolder)
+buttonNewTask.addEventListener('click', makeNewTask)
+
+function makeNewFolder(){
+  const info = promptQuestionnaire( FolderQuestionnaire );
+  const folder = Folder(info.title);
+  folders.push(folder);
+  addFolder(folder)
+}
+
+function makeNewTask(){
+  console.log(promptQuestionnaire( TaskQuestionnaire ))
 }

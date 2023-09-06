@@ -1,6 +1,6 @@
 import { makeElement, makeIcon } from "./dom-utility"
 
-export { makeDashboard }
+export { makeDashboard, addFolder, buttonNewFolder }
 
 const buttonNewFolder = makeElement({
   type: 'div',
@@ -16,11 +16,11 @@ buttonNewFolder.append(
   }),
 )
 
-function makeDashboard( folders ){
-  const main = makeElement({type: 'main'})
-  main.classList.add('dashboard')
-  main.append( buttonNewFolder )
+const main = makeElement({type: 'main'})
+main.classList.add('dashboard')
+main.append( buttonNewFolder )
 
+function makeDashboard( folders ){
   if (!folders) return main
 
   folders.forEach( item => {
@@ -29,6 +29,12 @@ function makeDashboard( folders ){
   });
 
   return main
+}
+
+function addFolder( folder ){
+  if(!folder) throw new Error('No folder provided');
+  const card = makeFolderCard( folder )
+  main.append( card )
 }
 
 function makeFolderCard( folder ){
