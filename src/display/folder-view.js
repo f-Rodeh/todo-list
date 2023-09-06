@@ -1,7 +1,7 @@
 import { makeElement, makeIcon } from "./dom-utility"
 import { displayDueDate } from "./date-displayer";
 
-export { makeFolderView }
+export { FolderView }
 
 const buttonNewTask = document.createElement('div');
 buttonNewTask.classList.add('new-task', 'card');
@@ -15,16 +15,16 @@ buttonNewTask.append(
   }),
 )
 
-function makeFolderView( folder ){
+function FolderView( folder ){
   const main = document.createElement('main')
 
-  const taskList = makeTaskListDisplay( folder.getTasks() );
+  const taskList = TaskListElement( folder.getTasks() );
   main.append(taskList)
 
   return main
 }
 
-function makeTaskListDisplay( taskList ){
+function TaskListElement( taskList ){
   const output = document.createElement('section');
   output.append(buttonNewTask)
   output.id = 'task-list'

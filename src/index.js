@@ -2,7 +2,7 @@ import { Folder } from "./logic/folder";
 import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
 import { makeDashboard } from "./display/dashboard";
-import { makeFolderView } from "./display/folder-view";
+import { FolderView } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
 
@@ -55,7 +55,7 @@ function addTaskListener( task ){
 }
 
 function openFolderView( folder ){
-  const folderView = makeFolderView( folder );
+  const folderView = FolderView( folder );
   setPageContent( folderView )
   addTab(folder.title, folderView);
 
