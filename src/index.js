@@ -54,27 +54,15 @@ function addTaskListener( task ){
   })
 }
 
-function addNavTab(textContent, uid){
-  const navTab = document.createElement('span')
-  navTab.textContent = textContent
-  navTab.dataset.uid = uid
-  navBar.append( navTab )
-}
-
 function openFolderView( folder ){
-  // addNavTab(folder.title, folder.uid)
-
   const folderView = makeFolderView( folder );
   setPageContent( folderView )
   addTab(folder.title, folderView);
-
 
   updateTaskCardsListener();
 }
 
 function openTaskView( task ){
-  // addNavTab(task.title, task.uid)
-
   const taskView = makeTaskView( task );
   setPageContent( taskView )
   addTab( task.title, taskView )

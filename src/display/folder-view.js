@@ -3,10 +3,8 @@ import { displayDueDate } from "./date-displayer";
 
 export { makeFolderView }
 
-const buttonNewTask = makeElement({
-  type: 'div',
-  classList: ['new-task card']
-})
+const buttonNewTask = document.createElement('div');
+buttonNewTask.classList.add('new-task', 'card');
 
 buttonNewTask.append(
   makeIcon('add-outline'),
@@ -31,42 +29,34 @@ function makeTaskListDisplay( taskList ){
   output.append(buttonNewTask)
   output.id = 'task-list'
   taskList.forEach(task => {
-    const card = makeTaskCard( task )
+    const card = TaskCard( task )
     output.append(card)
   });
   return output
 }
 
-function makeTaskCard( task ) {
+function TaskCard( task ) {
   const output = document.createElement('div');
   output.classList.add('task', 'card')
   output.dataset.uid = task.uid;
 
-  const divLeft = makeElement({type:'div', classList:['left']});
   const title = makeElement({
     type: 'h3',
     classList: ['title'],
     textContent: limitCharacters(32, task.title)
   })
 
-  divLeft.append(
-    title,
-    displayPriority(task.priority),
-    makeElement({
-      type: 'span',
-      classList: ['subtitle'],
-      textContent: limitCharacters(50, task.description)
-    }),
-  )
-
-  const divRight = makeElement({type: 'div', classList: ['right']})
-  divRight.append(
-    displayDueDate(task.getDueDate())
-  )
+  const subtitle = makeElement({
+    type: 'span',
+    classList: ['subtitle'],
+    textContent: limitCharacters(50, task.description)
+  })
 
   output.append(
-    divLeft,
-    divRight
+    title,
+    displayPriority(task.priority),
+    subtitle,
+    displayDueDate(task.getDueDate())
   )
 
   return output

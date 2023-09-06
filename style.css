@@ -102,10 +102,6 @@ main.dashboard {
   margin: 24px max(10vw, 24px);;
 }
 
-#task-list .right {
-  margin-left: auto;
-}
-
 .card {
   background-color: var(--surface);
   border-radius: 24px;
@@ -127,9 +123,11 @@ main.dashboard {
 
 .due-date {
   padding: 6px 12px;
+  margin-top: 12px;
   border-radius: 8px;
   font-size: 0.9rem;
   width: fit-content;
+  margin-left: auto;
 }
 
 .priority {
@@ -142,11 +140,4 @@ main.dashboard {
 
 .priority :nth-child(1){
   padding-left: 6px;
-}
-
-.right {
-  margin-left: auto;
-  text-align: right;
-  margin-top: 12px;
-  width: fit-content;
 }

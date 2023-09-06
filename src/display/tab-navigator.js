@@ -2,6 +2,7 @@ import { setPageContent } from "./home";
 
 export { addTab }
 
+// Just works to assign tabIndex, replace with a counter;
 let navigationHistory = [];
 
 function addTab( textContent, domReference ){
@@ -19,7 +20,6 @@ function addTab( textContent, domReference ){
 
   navigationBar.append( tab )
   navigationHistory.push( domReference )
-  console.log({navigationHistory})
 }
 
 function clearHistoryAfter( index ){
