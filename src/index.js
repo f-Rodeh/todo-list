@@ -81,7 +81,7 @@ function findTaskById( id ){
 const FolderQuestionnaire = {title: TextInput('Title')}
 const TaskQuestionnaire = {
   title: TextInput('Title'),
-  subtitle: TextInput('Subtitle'),
+  description: TextInput('Description'),
   dueDate: DateInput('Due Date'),
   priority: NumberInput('Priority')
 }
