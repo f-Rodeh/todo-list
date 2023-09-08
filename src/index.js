@@ -1,8 +1,8 @@
 import { Folder } from "./logic/folder";
 import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
-import { addFolder, buttonNewFolder, makeDashboard } from "./display/dashboard";
-import { FolderView, buttonNewTask } from "./display/folder-view";
+import { buttonNewFolder, makeDashboard, makeFolderCard } from "./display/dashboard";
+import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
 import { DateInput, NumberInput, TextInput, promptQuestionnaire } from "./display/input-prompter";
@@ -31,11 +31,7 @@ addTab( 'My Folders', dashboard )
 
 const folderCards = document.querySelectorAll('.folder');
 folderCards.forEach((folder) => {
-  folder.addEventListener('click', () => {
-    const id = folder.dataset.uid
-    currentFolder = findFolderById(id)
-    openFolderView( currentFolder )
-  })
+  addFolderListener( folder )
 })
 
 function setTaskCardListeners(){
@@ -47,6 +43,14 @@ function addTaskListener( taskCard ){
   taskCard.addEventListener('click', () => {
     const _task = findTaskById( taskCard.dataset.uid )
     openTaskView( _task )
+  })
+}
+
+function addFolderListener( folderCard ){
+  folderCard.addEventListener('click', () => {
+    const id = folderCard.dataset.uid
+    currentFolder = findFolderById(id)
+    openFolderView( currentFolder )
   })
 }
 
@@ -88,10 +92,19 @@ buttonNewTask.addEventListener('click', makeNewTask)
 function makeNewFolder(){
   const info = promptQuestionnaire( FolderQuestionnaire );
   const folder = Folder(info.title);
+  const card = makeFolderCard(folder);
+
   folders.push(folder);
-  addFolder(folder)
+  dashboard.append(card)
+  addFolderListener( card )
 }
 
 function makeNewTask(){
-  console.log(promptQuestionnaire( TaskQuestionnaire ))
+  const list = document.querySelector('#task-list')
+  const info = promptQuestionnaire( TaskQuestionnaire );
+  const task = Task( info.title, info.description, info.dueDate, info.priority );
+  currentFolder.addTask( task ) // Assigns uid so goes before carf
+  const card = TaskCard( task );
+  list.append( card )
+  addTaskListener( card )
 }

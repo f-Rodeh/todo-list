@@ -1,6 +1,6 @@
 import { makeElement, makeIcon } from "./dom-utility"
 
-export { makeDashboard, addFolder, buttonNewFolder }
+export { makeDashboard, makeFolderCard, buttonNewFolder }
 
 const buttonNewFolder = makeElement({
   type: 'div',

@@ -1,7 +1,7 @@
 import { makeElement, makeIcon } from "./dom-utility"
 import { displayDueDate } from "./date-displayer";
 
-export { FolderView, buttonNewTask }
+export { FolderView, TaskCard, buttonNewTask }
 
 const buttonNewTask = document.createElement('div');
 buttonNewTask.classList.add('new-task', 'card');

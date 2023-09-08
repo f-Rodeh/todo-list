@@ -1,4 +1,4 @@
-import { format, isValid, parse } from "date-fns";
+import { format, isValid } from "date-fns";
 
 export { makeTaskView }
 
