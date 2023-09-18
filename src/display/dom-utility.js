@@ -28,11 +28,21 @@ function Modal(){
   const background = makeElement({type: 'div', classList: ['modal-background']})
   const modal = makeElement({type: 'div', classList: ['modal-foreground']})
   const content = document.createElement('div')
+
   const actions = ModalActions();
+  actions.setCancelAction( dismiss )
   
   modal.append(content, actions.root)
   background.append(modal)
   document.body.append(background)
+
+  background.addEventListener('click', (e) => {
+    if(e.target === background) dismiss()
+  })
+
+  function dismiss(){
+    background.remove()
+  }
 
   const setMainAction = ( onclick ) => {
     actions.setMainAction( onclick )
@@ -58,12 +68,13 @@ function ModalActions(){
     confirm.addEventListener('click', onclick)
   }
 
+  const setCancelAction = ( onClick ) => {
+    cancel.addEventListener('click', onClick)
+  }
+
   return {
     root,
-    setMainAction
+    setMainAction,
+    setCancelAction
   }
 }
-
-// Modal
-// : content (element to add shit)
-// : setConfirmAction (takes a function and assigns it to confirm.onclick)
