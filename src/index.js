@@ -78,7 +78,7 @@ function findTaskById( id ){
   return tasks.find((element) => element.uid === id)
 }
 
-const FolderQuestionnaire = {title: TextInput('Title')}
+const FolderQuestionnaire = {title: TextInput('Title', 'title')}
 const TaskQuestionnaire = {
   title: TextInput('Title'),
   description: TextInput('Description'),
@@ -92,8 +92,6 @@ buttonNewTask.addEventListener('click', makeNewTask)
 function makeNewFolder(){
   const form = InputForm( FolderQuestionnaire );
 
-  
-
   form.setMainAction(() => {
     console.log('main')
     const folder = Folder('Hardcoded')
@@ -102,14 +100,6 @@ function makeNewFolder(){
     dashboard.append(card)
     addFolderListener(card)
   }) 
-
-  // const info = promptQuestionnaire( FolderQuestionnaire );
-  // const folder = Folder(info.title);
-  // const card = makeFolderCard(folder);
-
-  // folders.push(folder);
-  // dashboard.append(card)
-  // addFolderListener( card )
 }
 
 function makeNewTask(){
