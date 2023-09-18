@@ -5,7 +5,7 @@ import { buttonNewFolder, makeDashboard, makeFolderCard } from "./display/dashbo
 import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
-import { DateInput, NumberInput, TextInput, promptQuestionnaire } from "./display/input-prompter";
+import { DateInput, InputForm, NumberInput, TextInput, displayForm, promptQuestionnaire } from "./display/input-prompter";
 
 loadPage()
 
@@ -90,13 +90,26 @@ buttonNewFolder.addEventListener('click', makeNewFolder)
 buttonNewTask.addEventListener('click', makeNewTask)
 
 function makeNewFolder(){
-  const info = promptQuestionnaire( FolderQuestionnaire );
-  const folder = Folder(info.title);
-  const card = makeFolderCard(folder);
+  const form = InputForm( FolderQuestionnaire );
 
-  folders.push(folder);
-  dashboard.append(card)
-  addFolderListener( card )
+  
+
+  form.setMainAction(() => {
+    console.log('main')
+    const folder = Folder('Hardcoded')
+    const card = makeFolderCard(folder)
+    folders.push(folder)
+    dashboard.append(card)
+    addFolderListener(card)
+  }) 
+
+  // const info = promptQuestionnaire( FolderQuestionnaire );
+  // const folder = Folder(info.title);
+  // const card = makeFolderCard(folder);
+
+  // folders.push(folder);
+  // dashboard.append(card)
+  // addFolderListener( card )
 }
 
 function makeNewTask(){

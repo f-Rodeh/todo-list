@@ -1,4 +1,4 @@
-export { makeElement, makeIcon }
+export { makeElement, makeIcon, Modal }
 
 function makeElement( obj ){
   if(!obj.hasOwnProperty('type')) return
@@ -23,3 +23,47 @@ function makeIcon( name ){
 
   return output
 }
+
+function Modal(){
+  const background = makeElement({type: 'div', classList: ['modal-background']})
+  const modal = makeElement({type: 'div', classList: ['modal-foreground']})
+  const content = document.createElement('div')
+  const actions = ModalActions();
+  
+  modal.append(content, actions.root)
+  background.append(modal)
+  document.body.append(background)
+
+  const setMainAction = ( onclick ) => {
+    actions.setMainAction( onclick )
+  }
+
+  return {
+    content,
+    setMainAction
+  }
+}
+
+function ModalActions(){
+  const root = document.createElement('div')
+
+  const cancel = makeElement({type: 'button', textContent: 'Cancel'})
+  cancel.classList.add('cancel')
+  const confirm = makeElement({type: 'button', textContent: 'Confirm'})
+  confirm.classList.add('confirm')
+
+  root.append(cancel, confirm)
+
+  const setMainAction = ( onclick ) => {
+    confirm.addEventListener('click', onclick)
+  }
+
+  return {
+    root,
+    setMainAction
+  }
+}
+
+// Modal
+// : content (element to add shit)
+// : setConfirmAction (takes a function and assigns it to confirm.onclick)

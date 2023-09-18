@@ -141,3 +141,21 @@ main.dashboard {
 .priority :nth-child(1){
   padding-left: 6px;
 }
+
+.modal-background {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(1px);
+  display: grid;
+  place-content: center;
+}
+
+.modal-foreground {
+  background-color: var(--surface);
+  border-radius: 48px;
+  width: clamp(250px, 60vw, 600px);
+  height: 60vh;
+}
