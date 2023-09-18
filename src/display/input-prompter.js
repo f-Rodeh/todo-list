@@ -1,6 +1,6 @@
 import { Modal } from "./dom-utility";
 
-export { TextInput, DateInput, NumberInput, promptQuestionnaire, InputForm }
+export { TextInput, DateInput, NumberInput, InputForm, getFormObject }
 
 function Input( type, label, id ){
   const _label = document.createElement('label')
@@ -17,17 +17,11 @@ function Input( type, label, id ){
 }
 
 function TextInput( label, id ) {
-  function ask(){
-    const answer = prompt(label);
-    return answer
-  }
-
   function build(){
     return Input('text', label, id)
   }
 
   return {
-    ask,
     build
   }
 }
@@ -54,17 +48,6 @@ function NumberInput( label ) {
   }
 }
 
-function promptQuestionnaire( questionnaire ){
-  let answers = {}
-  for (const key in questionnaire) {
-    if (!questionnaire.hasOwnProperty(key)) return
-
-    const question = questionnaire[key];
-    answers[key] = question.ask();
-  }
-  return answers
-}
-
 function InputForm( questionnaire ){
   const modal = Modal();
 
@@ -73,16 +56,16 @@ function InputForm( questionnaire ){
     const question = questionnaire[key];
     const input = question.build();
     modal.content.append(input)
-    //TODO: Add id to bind label
-    //TODO: Add name to read it on the object
   }
 
   return modal
 }
 
 function getFormObject( element ){
-  // create empty output object
-  // get all inputs in the element
-  // for each input, add the the "name || id" as key and "value" as value to the output
-  // return output
+  let output = {}
+  const inputs = element.querySelectorAll('input');
+  inputs.forEach(input => {
+    output[input.id] = input.value
+  });
+  return output
 }
