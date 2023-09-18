@@ -27,24 +27,22 @@ function TextInput( label ) {
 }
 
 function DateInput( label ) {
-  function ask(){
-    const answer = prompt(label);
-    return answer
+  function build(id){
+    return Input('date', label, id)
   }
 
   return {
-    ask,
+    build
   }
 }
 
 function NumberInput( label ) {
-  function ask(){
-    const answer = prompt(label);
-    return answer
+  function build(id){
+    return Input('num', label, id)
   }
 
   return {
-    ask,
+    build
   }
 }
 

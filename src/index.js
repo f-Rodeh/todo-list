@@ -103,11 +103,15 @@ function makeNewFolder(){
 }
 
 function makeNewTask(){
-  const list = document.querySelector('#task-list')
-  const info = promptQuestionnaire( TaskQuestionnaire );
-  const task = Task( info.title, info.description, info.dueDate, info.priority );
-  currentFolder.addTask( task ) // Assigns uid so goes before carf
-  const card = TaskCard( task );
-  list.append( card )
-  addTaskListener( card )
+  const form = InputForm( TaskQuestionnaire );
+
+  form.setMainAction(() => {
+    const answers = getFormObject(form.content)
+    const list = document.querySelector('#task-list')
+    const task = Task( answers.title, answers.description, answers.dueDate, answers.priority );
+    currentFolder.addTask( task ) // Assigns uid so goes before card
+    const card = TaskCard( task );
+    list.append( card )
+    addTaskListener( card )
+  })
 }
