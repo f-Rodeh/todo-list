@@ -78,7 +78,7 @@ function findTaskById( id ){
   return tasks.find((element) => element.uid === id)
 }
 
-const FolderQuestionnaire = {title: TextInput('Title', 'title')}
+const FolderQuestionnaire = {title: TextInput('Title')}
 const TaskQuestionnaire = {
   title: TextInput('Title'),
   description: TextInput('Description'),

@@ -16,8 +16,8 @@ function Input( type, label, id ){
   return div
 }
 
-function TextInput( label, id ) {
-  function build(){
+function TextInput( label ) {
+  function build(id){
     return Input('text', label, id)
   }
 
@@ -54,7 +54,7 @@ function InputForm( questionnaire ){
   for (const key in questionnaire) {
     if (!questionnaire.hasOwnProperty(key)) return
     const question = questionnaire[key];
-    const input = question.build();
+    const input = question.build(key);
     modal.content.append(input)
   }
 
