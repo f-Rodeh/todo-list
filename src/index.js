@@ -114,5 +114,6 @@ function makeNewTask(){
     const card = TaskCard( task );
     list.append( card )
     addTaskListener( card )
+    form.dismiss()
   })
 }

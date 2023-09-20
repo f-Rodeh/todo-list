@@ -211,7 +211,7 @@ main.dashboard {
 
 .modal .content {
   place-self: center;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 .modal .content > div {
