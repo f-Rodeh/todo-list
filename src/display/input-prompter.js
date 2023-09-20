@@ -38,7 +38,7 @@ function DateInput( label ) {
 
 function NumberInput( label ) {
   function build(id){
-    return Input('num', label, id)
+    return Input('number', label, id)
   }
 
   return {
