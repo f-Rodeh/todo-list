@@ -178,6 +178,9 @@ main.dashboard {
   width: clamp(250px, 60vw, 600px);
   height: 60vh;
   padding: 48px 10%;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .modal .content {
