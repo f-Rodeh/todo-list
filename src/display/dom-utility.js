@@ -50,7 +50,8 @@ function Modal(){
 
   return {
     content,
-    setMainAction
+    setMainAction,
+    dismiss
   }
 }
 

@@ -99,7 +99,8 @@ function makeNewFolder(){
     folders.push(folder)
     dashboard.append(card)
     addFolderListener(card)
-  }) 
+    form.dismiss();
+  })
 }
 
 function makeNewTask(){
