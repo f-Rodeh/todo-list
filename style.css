@@ -39,6 +39,24 @@ header {
   gap: 12px;
 }
 
+button {
+  border-radius: 8px;
+  padding: 10px 30px;
+  font: inherit;
+  font-weight: 500;
+}
+
+button.filled {
+  border: none;
+  color: var(--surface);
+}
+
+button.outlined {
+  border: 2px solid var(--sand);
+  color: var(--sand);
+  background: none;
+}
+
 nav, main {
   margin: 32px min(5vw, 48px);
 }
@@ -142,7 +160,7 @@ main.dashboard {
   padding-left: 6px;
 }
 
-.modal-background {
+.modal.background {
   position: fixed;
   left: 0; top: 0;
   width: 100vw;
@@ -153,9 +171,30 @@ main.dashboard {
   place-content: center;
 }
 
-.modal-foreground {
+
+.modal.foreground {
   background-color: var(--surface);
   border-radius: 48px;
   width: clamp(250px, 60vw, 600px);
   height: 60vh;
+  padding: 48px 10%;
+}
+
+.modal .content {
+
+}
+
+.modal .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modal button.confirm {
+  flex: 2;
+  background-color: var(--sand);
+}
+
+.modal button.cancel {
+  flex: 1;
 }

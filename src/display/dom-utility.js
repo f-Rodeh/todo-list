@@ -25,9 +25,10 @@ function makeIcon( name ){
 }
 
 function Modal(){
-  const background = makeElement({type: 'div', classList: ['modal-background']})
-  const modal = makeElement({type: 'div', classList: ['modal-foreground']})
+  const background = makeElement({type: 'div', classList: ['modal background']})
+  const modal = makeElement({type: 'div', classList: ['modal foreground']})
   const content = document.createElement('div')
+  content.classList.add('content')
 
   const actions = ModalActions();
   actions.setCancelAction( dismiss )
@@ -57,11 +58,12 @@ function Modal(){
 
 function ModalActions(){
   const root = document.createElement('div')
+  root.classList.add('actions')
 
   const cancel = makeElement({type: 'button', textContent: 'Cancel'})
-  cancel.classList.add('cancel')
-  const confirm = makeElement({type: 'button', textContent: 'Confirm'})
-  confirm.classList.add('confirm')
+  cancel.classList.add('cancel', 'outlined')
+  const confirm = makeElement({type: 'button', textContent: 'Okay!'})
+  confirm.classList.add('confirm', 'filled')
 
   root.append(cancel, confirm)
 
