@@ -83,7 +83,7 @@ const TaskQuestionnaire = {
   title: TextInput('Title'),
   description: TextInput('Description'),
   dueDate: DateInput('Due Date'),
-  priority: NumberInput('Priority')
+  priority: NumberInput('Priority', 0, 0, 3) // TODO: replace with star rating
 }
 
 buttonNewFolder.addEventListener('click', makeNewFolder)

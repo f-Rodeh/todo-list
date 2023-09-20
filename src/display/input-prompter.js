@@ -36,9 +36,14 @@ function DateInput( label ) {
   }
 }
 
-function NumberInput( label ) {
+function NumberInput( label, defaultValue, min, max ) {
   function build(id){
-    return Input('number', label, id)
+    const element = Input('number', label, id);
+    const input = element.querySelector('input')
+    input.defaultValue = defaultValue;
+    input.min = min;
+    input.max = max;
+    return element
   }
 
   return {
