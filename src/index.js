@@ -1,7 +1,7 @@
 import { Folder } from "./logic/folder";
 import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
-import { buttonNewFolder, makeDashboard, makeFolderCard } from "./display/dashboard";
+import { buttonNewFolder, makeDashboard, FolderCard } from "./display/dashboard";
 import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
@@ -95,7 +95,7 @@ function makeNewFolder(){
   form.setMainAction(() => {
     const answers = getFormObject(form.content)
     const folder = Folder(answers.title)
-    const card = makeFolderCard(folder)
+    const card = FolderCard(folder)
     folders.push(folder)
     dashboard.append(card)
     addFolderListener(card)

@@ -118,6 +118,27 @@ main.dashboard {
   gap: 24px;
 }
 
+.folder.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder .icons {
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.icons ion-icon {
+  font-size: 24px;
+  color: var(--txt-low-contrast);
+  transition: all 180ms ease-in-out;
+}
+
+.icons :hover {
+  color: var(--main-txt);
+  scale: 1.1;
+}
+
 .new-folder {
   display: grid;
   place-content: center;

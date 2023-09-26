@@ -1,6 +1,6 @@
 import { makeElement, makeIcon } from "./dom-utility"
 
-export { makeDashboard, makeFolderCard, buttonNewFolder }
+export { makeDashboard, FolderCard, buttonNewFolder }
 
 const buttonNewFolder = makeElement({
   type: 'div',
@@ -24,20 +24,14 @@ function makeDashboard( folders ){
   if (!folders) return main
 
   folders.forEach( item => {
-    const card = makeFolderCard( item )
+    const card = FolderCard( item )
     main.append( card )
   });
 
   return main
 }
 
-function addFolder( folder ){
-  if(!folder) throw new Error('No folder provided');
-  const card = makeFolderCard( folder )
-  main.append( card )
-}
-
-function makeFolderCard( folder ){
+function FolderCard( folder ){
   const output = makeElement({
     type: 'div',
     classList: ['folder card']
@@ -45,6 +39,12 @@ function makeFolderCard( folder ){
   
   output.dataset.uid = folder.uid
   let itemCount = folder.getTasks().length
+
+  const icons = document.createElement('div');
+  icons.classList.add('icons');
+
+  const trashIcon = makeIcon('trash-outline');
+  icons.append(trashIcon)
 
   output.append(
     makeElement({
@@ -56,7 +56,8 @@ function makeFolderCard( folder ){
       type: 'span',
       classList: ['subtitle'],
       textContent: formatItemCount(itemCount)
-    })
+    }),
+    icons
   )
   return output
 }

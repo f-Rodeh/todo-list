@@ -5,7 +5,7 @@ const header = makeElement({type: 'header'})
 
 const logoContainer = document.createElement('div')
 logoContainer.classList.add('logo-container')
-logoContainer.addEventListener('click', () => location.reload())
+logoContainer.addEventListener('click', () => location.reload()) // TODO: change dom to home instead of reloading everything
 
 logoContainer.append(
   makeElement({
