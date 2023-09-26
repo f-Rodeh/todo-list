@@ -20,7 +20,7 @@ function TextInput( label, maxlength) {
   function build(id){
     const element = Input('text', label, id)
     const input = element.querySelector('input')
-    input.maxLength = maxlength;
+    if (maxlength) input.maxLength = maxlength;
     return element;
   }
 
