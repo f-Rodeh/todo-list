@@ -16,9 +16,12 @@ function Input( type, label, id ){
   return div
 }
 
-function TextInput( label ) {
+function TextInput( label, maxlength) {
   function build(id){
-    return Input('text', label, id)
+    const element = Input('text', label, id)
+    const input = element.querySelector('input')
+    input.maxLength = maxlength;
+    return element;
   }
 
   return {

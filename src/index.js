@@ -80,8 +80,8 @@ function findTaskById( id ){
 
 const FolderQuestionnaire = {title: TextInput('Title')}
 const TaskQuestionnaire = {
-  title: TextInput('Title'),
-  description: TextInput('Description'),
+  title: TextInput('Title', 32),
+  description: TextInput('Description', 280),
   dueDate: DateInput('Due Date'),
   priority: NumberInput('Priority', 0, 0, 3) // TODO: replace with star rating
 }
