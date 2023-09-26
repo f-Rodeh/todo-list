@@ -201,8 +201,8 @@ main.dashboard {
 .modal.foreground {
   background-color: var(--surface);
   border-radius: 48px;
-  width: clamp(250px, 60vw, 600px);
-  height: 60vh;
+  width: clamp(280px, 60vw, 600px);
+  min-height: 60vh;
   padding: 48px 10%;
 
   display: grid;
