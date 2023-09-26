@@ -32,11 +32,18 @@ header {
   padding: 18px;
   font-size: 1.5rem;
   font-weight: bold;
+}
 
+header, .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
+}
+
+.logo-container {
+  width: fit-content;
+  cursor: pointer;
 }
 
 button {

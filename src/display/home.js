@@ -1,10 +1,15 @@
 import { makeElement } from "./dom-utility";
 export { loadPage, setPageContent }
 
-const header = makeElement({type: 'header'});
-header.append(
+const header = makeElement({type: 'header'})
+
+const logoContainer = document.createElement('div')
+logoContainer.classList.add('logo-container')
+logoContainer.addEventListener('click', () => location.reload())
+
+logoContainer.append(
   makeElement({
-    type: 'img', 
+    type: 'img',
     src: 'https://img.logoipsum.com/246.svg'
   }),
   makeElement({
@@ -12,6 +17,8 @@ header.append(
     textContent: 'TO DEW'
   })
 )
+
+header.append(logoContainer)
 
 const navBar = makeElement({type: 'nav'});
 
