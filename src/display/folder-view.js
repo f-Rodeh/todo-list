@@ -52,11 +52,17 @@ function TaskCard( task ) {
     textContent: limitCharacters(50, task.description)
   })
 
+  const tags = document.createElement('div');
+  tags.classList.add('tags')
+  tags.append(
+    displayDueDate(task.getDueDate()),
+    displayPriority(task.priority)
+  )
+
   output.append(
     title,
-    displayPriority(task.priority),
     subtitle,
-    displayDueDate(task.getDueDate())
+    tags
   )
 
   return output
@@ -68,12 +74,15 @@ function limitCharacters( maxLength, string = ''){
   return string.substring(0, maxLength-3) + '...'
 }
 
-function displayPriority( priorityNumber ){
+function displayPriority( priority ){
   const output = document.createElement('span')
-  output.classList.add('priority')
-  if(priorityNumber > 0) output.textContent = 'Important '
+  if ( !priority > 0 ) return output;
+
+  output.classList.add('priority', 'small-badge')
+  output.textContent = 'Important '
+  output.style.backgroundColor = 'var(--sand)'
   
-  for (let i = 0; i < priorityNumber; i++) {
+  for (let i = 0; i < priority; i++) {
     const priorityIcon = makeIcon('alert-circle-outline');
     output.append(priorityIcon)
   }

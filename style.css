@@ -6,14 +6,14 @@
   --main-txt: #e6e6fa;
   --txt-low-contrast: #a5a5a5;
 
-  --gray: #5d666f;
-  --red: #c70f34;
-  --light-blue: hsl(172, 50%, 55%);
+  --gray: #a5a5a5;
+  --red: #f42c25;
+  --light-blue: #53c6b6;
   --sand: #FFA589;
-  --teal: #145f55;
-  --blue: #1f5c7a;
+  --teal: #24a889;
+  --blue: #4693b9;
   --purple: #4B0082;
-  --purple-pink: #a00379;
+  --purple-pink: #ec136a;
 }
 
 * {
@@ -193,21 +193,27 @@ main.dashboard {
   color: var(--txt-low-contrast);
 }
 
-.due-date {
-  padding: 6px 12px;
+.task .tags {
+  display: flex;
+  gap: 6px;
   margin-top: 12px;
+}
+
+.small-badge {
+  padding: 6px 12px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   width: fit-content;
-  margin-left: auto;
+  color: var(--main-bg);
+}
+
+.due-date {
+  margin-top: 12px;
 }
 
 .priority {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  font-size: 1rem;
-  color: var(--light-blue);
-  margin-bottom: 6px;
 }
 
 .priority :nth-child(1){

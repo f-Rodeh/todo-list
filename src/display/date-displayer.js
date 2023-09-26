@@ -3,8 +3,8 @@ import { format, formatDistanceToNow, isPast, isThisWeek, isToday } from "date-f
 export {displayDueDate}
 
 function displayDueDate( date ) {
-  const output = document.createElement('div');
-  output.classList.add('due-date');
+  const output = document.createElement('span');
+  output.classList.add('small-badge');
   const dateProperties = getDateProperties(date);
   output.textContent = dateProperties.msg;
   output.style.backgroundColor = dateProperties.color;
