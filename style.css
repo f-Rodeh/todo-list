@@ -7,7 +7,7 @@
   --txt-low-contrast: #a5a5a5;
 
   --gray: #a5a5a5;
-  --red: #f42c25;
+  --red: hsl(2, 90%, 56%);
   --light-blue: #53c6b6;
   --sand: #FFA589;
   --teal: #24a889;
@@ -123,9 +123,11 @@ main.dashboard {
   flex-direction: column;
 }
 
-.folder .icons {
+.folder .icons,
+.task .icons {
   align-self: flex-end;
   margin-top: auto;
+  text-align: end;
 }
 
 .icons ion-icon {

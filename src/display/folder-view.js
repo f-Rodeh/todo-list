@@ -59,10 +59,17 @@ function TaskCard( task ) {
     displayPriority(task.priority)
   )
 
+  const icons = document.createElement('div');
+  icons.classList.add('icons');
+
+  const trashIcon = makeIcon('trash-outline');
+  icons.append(trashIcon)
+
   output.append(
     title,
     subtitle,
-    tags
+    tags,
+    icons
   )
 
   return output
