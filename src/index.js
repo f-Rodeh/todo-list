@@ -5,7 +5,7 @@ import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
 import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display/input-prompter";
 import { AppStorage } from "./logic/storage";
-import { Folder, StoredFolder, Task } from "./logic/models";
+import { Folder, Task } from "./logic/models";
 
 loadPage()
 

@@ -8,7 +8,7 @@ const StoredFolder = ( folder ) => {
 
 const Folder = (title, color = null, icon = null) => {
   const uid = generateUid()
-  const folder = { title, color, icon, uid } 
+  const folder = { title, color, icon, uid, tasks:[] } 
   localStorage.setItem(`FOLDER_${uid}`, JSON.stringify( folder ))
 
   return Object.assign( folder, TaskManager() )
@@ -17,7 +17,6 @@ const Folder = (title, color = null, icon = null) => {
 const Task = ( title, description = '', dueDate, priority = 0 ) => {
   const uid = generateUid()
   const task = { title, description, isDone:false, priority, uid }
-  localStorage.setItem(`TASK_${uid}`, JSON.stringify( task ))
 
   const dateManager = DateManager()
   dateManager.setDueDate( dueDate )
@@ -30,14 +29,13 @@ const Task = ( title, description = '', dueDate, priority = 0 ) => {
 }
 
 function TaskManager(){
-  let tasks = [];
+  // let tasks = [];
 
-  function getTasks(){ return tasks }
+  function getTasks(){ return this.tasks }
 
   function addTask( task ){
-    const uid = generateUid( tasks )
-    tasks.push( task )
-    task.uid = uid
+    this.tasks.push(task)
+    localStorage.setItem(`FOLDER_${this.uid}`, JSON.stringify(this))
   }
 
   function removeTask(){}
