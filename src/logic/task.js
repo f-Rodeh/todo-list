@@ -8,12 +8,9 @@ const Task = ( title, description = '', dueDate, priority = 0 ) => {
 
   let isDone = false;
 
-  return Object.assign({
-    title,
-    description,
-    isDone,
-    priority
-    },
+  const task = { title, description, isDone, priority };
+  return Object.assign(
+    task,
     commentManager,
     dateManager
   )

@@ -1,11 +1,11 @@
-import { Folder, StoredFolder } from "./logic/folder";
-import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
 import { buttonNewFolder, makeDashboard, FolderCard } from "./display/dashboard";
 import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
-import { DateInput, InputForm, NumberInput, TextInput, displayForm, getFormObject, promptQuestionnaire } from "./display/input-prompter";
+import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display/input-prompter";
+import { AppStorage, findLocalItems } from "./logic/storage";
+import { Folder, StoredFolder, Task } from "./logic/models";
 
 loadPage()
 
@@ -110,15 +110,6 @@ function makeNewTask(){
     addTaskListener( card )
     form.dismiss()
   })
-}
-
-function findLocalItems( query ){
-  let results = [];
-  for (const key in localStorage) {
-    if (!localStorage.hasOwnProperty(key)) continue;
-    if( key.includes( query )) results.push( localStorage[key] )
-  }
-  return results;
 }
 
 function getLocalFolders(){

@@ -1,5 +1,6 @@
 import { makeElement, makeIcon } from "./dom-utility"
 import { displayDueDate } from "./date-displayer";
+import { findLocalItems } from "../logic/storage";
 
 export { FolderView, TaskCard, buttonNewTask }
 
@@ -16,7 +17,7 @@ buttonNewTask.append(
 )
 
 function FolderView( folder ){
-  const main = document.createElement('main')
+  const main = document.createElement('main');
 
   const taskList = TaskListElement( folder.getTasks() );
   main.append(taskList)
