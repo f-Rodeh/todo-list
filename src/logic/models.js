@@ -17,6 +17,7 @@ const Folder = (title, color = null, icon = null) => {
 const Task = ( title, description = '', dueDate, priority = 0 ) => {
   const uid = generateUid()
   const task = { title, description, isDone:false, priority, uid }
+  localStorage.setItem(`TASK_${uid}`, JSON.stringify( task ))
 
   const dateManager = DateManager()
   dateManager.setDueDate( dueDate )
