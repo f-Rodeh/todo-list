@@ -14,24 +14,26 @@ const Folder = (title, color = null, icon = null) => {
   return Object.assign( folder, TaskManager() )
 }
 
+const StoredTask = ( task ) => {
+  return Object.assign(task, DueDateManager(task.dueDate), CommentManager())
+}
+
 const Task = ( title, description = '', dueDate, priority = 0 ) => {
   const uid = generateUid()
-  const task = { title, description, isDone:false, priority, uid }
-
-  const dateManager = DateManager()
-  dateManager.setDueDate( dueDate )
+  const task = { title, description, isDone:false, priority, uid, dueDate }
 
   return Object.assign(
     task,
-    dateManager,
+    DueDateManager( dueDate ),
     CommentManager()
   )
 }
 
 function TaskManager(){
-  // let tasks = [];
-
-  function getTasks(){ return this.tasks }
+  function getTasks(){   
+    console.log( this.tasks)
+    return this.tasks.map( task => StoredTask( task ))
+  }
 
   function addTask( task ){
     this.tasks.push(task)
@@ -59,8 +61,9 @@ function CommentManager() {
   }
 }
 
-function DateManager(){
+function DueDateManager( initialDueDate ){
   let dueDate = null;
+  setDueDate( initialDueDate )
 
   function setDueDate( input ){
     const newDate = new Date( input );
