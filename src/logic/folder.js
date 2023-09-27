@@ -1,4 +1,27 @@
-export { Folder }
+export { Folder, StoredFolder }
+
+function taskManager(){
+  let tasks = [];
+
+  function getTasks(){ return tasks }
+
+  function addTask( task ){
+    const uid = generateUid( tasks )
+    tasks.push( uid )
+    task.uid = uid
+  }
+
+  function removeTask(){}
+
+  return {
+    getTasks,
+    addTask
+  }
+}
+
+const StoredFolder = ( folder ) => {
+  return Object.assign(folder, taskManager())
+}
 
 const Folder = (title, color = null, icon = null) => {
 

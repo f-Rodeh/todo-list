@@ -1,4 +1,4 @@
-import { Folder } from "./logic/folder";
+import { Folder, StoredFolder } from "./logic/folder";
 import { Task } from "./logic/task";
 import { loadPage, setPageContent } from "./display/home";
 import { buttonNewFolder, makeDashboard, FolderCard } from "./display/dashboard";
@@ -127,7 +127,7 @@ function getLocalFolders(){
 
   local.forEach( _folder => {
     const obj = JSON.parse( _folder );
-    const folder = Folder(obj.title, obj.color, obj.icon)
+    const folder = StoredFolder( obj )
     output.push( folder )
   })
 
