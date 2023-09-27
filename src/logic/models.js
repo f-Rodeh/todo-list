@@ -85,7 +85,7 @@ function generateUid(){
   const id = 'i' + randomString(6);
 
   if( !AppStorage.getIdList().includes(id) ){
-    return output
+    return id
   } else {
     generateUid( idArray )
   }
