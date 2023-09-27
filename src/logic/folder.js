@@ -24,44 +24,11 @@ const StoredFolder = ( folder ) => {
 }
 
 const Folder = (title, color = null, icon = null) => {
-
-  let tasks = []
   const uid = generateUid()
-
-  function addTask(task) {
-    const uid = generateUid( tasks );
-    task.uid = uid;
-    tasks.push(task);
-  }
-
-  function removeTask( taskUid ){
-    const isTarget = (task) =>  task.uid === taskUid;
-    const index = tasks.findIndex( isTarget )
-    console.log({index})
-    if (index >= 0) tasks.splice(index, 1)
-  }
-
-  function getTasks(){
-    return tasks
-  }
-
-  localStorage.setItem(`FOLDER_${uid}`, JSON.stringify({
-    title,
-    color,
-    icon,
-    uid
-  }))
-  console.log(JSON.parse(localStorage.getItem('folder')))
-
-  return {
-    title, //string
-    color, //string
-    icon,  //not implemented
-    uid,   //string
-    addTask,
-    getTasks,
-    removeTask
-  }
+  const folder = { title, color, icon, uid} 
+  localStorage.setItem(`FOLDER_${uid}`, JSON.stringify( folder ))
+  
+  return Object.assign( folder, taskManager() )
 }
 
 function isIdAvailable( array, id ){
