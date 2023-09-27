@@ -15,14 +15,8 @@ const task2 = Task('Task 2', 'This is a super long description that should be cr
 const task3 = Task('Task 3', '', '2023-9-4', 2);
 const task4 = Task('Task 4', '', '2023-09-6');
 const task5 = Task('Task 5', '', '2023-12-11');
-const folder1 = Folder('Example 1');
-const folder2 = Folder('Example 2');
-folder1.addTask(task1)
-folder1.addTask(task2)
-folder1.addTask(task3)
-folder1.addTask(task4)
-folder1.addTask(task5)
-let folders = [folder1, folder2];
+
+let folders = getLocalFolders();
 let currentFolder;
 
 const dashboard = makeDashboard(folders)
@@ -116,4 +110,26 @@ function makeNewTask(){
     addTaskListener( card )
     form.dismiss()
   })
+}
+
+function findLocalItems( query ){
+  let results = [];
+  for (const key in localStorage) {
+    if (!localStorage.hasOwnProperty(key)) continue;
+    if( key.includes( query )) results.push( localStorage[key] )
+  }
+  return results;
+}
+
+function getLocalFolders(){
+  let output = []
+  const local = findLocalItems('FOLDER_');
+
+  local.forEach( _folder => {
+    const obj = JSON.parse( _folder );
+    const folder = Folder(obj.title, obj.color, obj.icon)
+    output.push( folder )
+  })
+
+  return output
 }

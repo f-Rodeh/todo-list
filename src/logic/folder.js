@@ -22,11 +22,19 @@ const Folder = (title, color = null, icon = null) => {
     return tasks
   }
 
-  return {
+  localStorage.setItem(`FOLDER_${uid}`, JSON.stringify({
     title,
     color,
     icon,
-    uid,
+    uid
+  }))
+  console.log(JSON.parse(localStorage.getItem('folder')))
+
+  return {
+    title, //string
+    color, //string
+    icon,  //not implemented
+    uid,   //string
     addTask,
     getTasks,
     removeTask
