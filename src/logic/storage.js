@@ -1,7 +1,12 @@
-export { findLocalItems, AppStorage }
+import { StoredFolder } from "./models"
+
+export { AppStorage }
 
 function getFolders(){
-  return findLocalItems( 'FOLDER_' )
+  return findLocalItems( 'FOLDER_' ).map( folder => {
+    const data = JSON.parse( folder )
+    return StoredFolder( data )
+  })
 }
 
 function getIdList(){

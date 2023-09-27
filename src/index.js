@@ -4,12 +4,12 @@ import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
 import { makeTaskView } from "./display/task-view";
 import { addTab } from "./display/tab-navigator";
 import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display/input-prompter";
-import { AppStorage, findLocalItems } from "./logic/storage";
+import { AppStorage } from "./logic/storage";
 import { Folder, StoredFolder, Task } from "./logic/models";
 
 loadPage()
 
-let folders = getLocalFolders();
+let folders = AppStorage.getFolders()
 let currentFolder;
 
 const dashboard = makeDashboard(folders)
@@ -65,8 +65,8 @@ function findTaskById( id ){
   return tasks.find((element) => element.uid === id)
 }
 
-const FolderQuestionnaire = {title: TextInput('Title')}
-const TaskQuestionnaire = {
+const FolderForm = {title: TextInput('Title')}
+const TaskForm = {
   title: TextInput('Title', 32),
   description: TextInput('Description', 280),
   dueDate: DateInput('Due Date'),
@@ -77,7 +77,7 @@ buttonNewFolder.addEventListener('click', makeNewFolder)
 buttonNewTask.addEventListener('click', makeNewTask)
 
 function makeNewFolder(){
-  const form = InputForm( FolderQuestionnaire );
+  const form = InputForm( FolderForm );
 
   form.setMainAction(() => {
     const answers = getFormObject(form.content)
@@ -91,7 +91,7 @@ function makeNewFolder(){
 }
 
 function makeNewTask(){
-  const form = InputForm( TaskQuestionnaire );
+  const form = InputForm( TaskForm );
 
   form.setMainAction(() => {
     const answers = getFormObject(form.content)
@@ -103,17 +103,4 @@ function makeNewTask(){
     addTaskListener( card )
     form.dismiss()
   })
-}
-
-function getLocalFolders(){
-  let output = []
-  const local = findLocalItems('FOLDER_');
-
-  local.forEach( _folder => {
-    const obj = JSON.parse( _folder );
-    const folder = StoredFolder( obj )
-    output.push( folder )
-  })
-
-  return output
 }
