@@ -84,7 +84,7 @@ function limitCharacters( maxLength, string = ''){
 
 function displayPriority( priority ){
   const output = document.createElement('span')
-  if ( !priority > 0 ) return output;
+  if ( +priority === 0 ) return output;
 
   output.classList.add('priority', 'small-badge')
   output.textContent = 'Important '
