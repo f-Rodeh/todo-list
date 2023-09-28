@@ -1,4 +1,4 @@
-import { loadPage, setPageContent } from "./display_utility/home";
+import { loadPage, setPageContent } from "./display_utility/page-container";
 import { buttonNewFolder, makeDashboard, FolderCard } from "./pages/dashboard";
 import { FolderView, TaskCard, buttonNewTask } from "./pages/folder";
 import { makeTaskView } from "./pages/task";

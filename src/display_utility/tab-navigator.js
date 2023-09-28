@@ -1,4 +1,4 @@
-import { setPageContent } from "./home";
+import { setPageContent } from "./page-container";
 
 export { addTab }
 
