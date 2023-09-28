@@ -1,3 +1,4 @@
+import { parse } from "date-fns";
 import { AppStorage } from "./storage";
 
 export { Folder, StoredFolder, Task }
@@ -31,7 +32,6 @@ const Task = ( title, description = '', dueDate, priority = 0 ) => {
 
 function TaskManager(){
   function getTasks(){   
-    console.log( this.tasks)
     return this.tasks.map( task => StoredTask( task ))
   }
 
@@ -66,7 +66,7 @@ function DueDateManager( initialDueDate ){
   setDueDate( initialDueDate )
 
   function setDueDate( input ){
-    const newDate = new Date( input );
+    const newDate = parse(input, 'yyyy-MM-dd', new Date());
 
     if( dateIsValid(newDate) ) {
       dueDate = newDate
