@@ -1,9 +1,9 @@
-import { loadPage, setPageContent } from "./display/home";
-import { buttonNewFolder, makeDashboard, FolderCard } from "./display/dashboard";
-import { FolderView, TaskCard, buttonNewTask } from "./display/folder-view";
-import { makeTaskView } from "./display/task-view";
-import { addTab } from "./display/tab-navigator";
-import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display/input-prompter";
+import { loadPage, setPageContent } from "./display_utility/home";
+import { buttonNewFolder, makeDashboard, FolderCard } from "./pages/dashboard";
+import { FolderView, TaskCard, buttonNewTask } from "./pages/folder";
+import { makeTaskView } from "./pages/task";
+import { addTab } from "./display_utility/tab-navigator";
+import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display_utility/input-prompter";
 import { AppStorage } from "./logic/storage";
 import { Folder, Task } from "./logic/models";
 

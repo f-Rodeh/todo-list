@@ -1,5 +1,5 @@
-import { makeElement, makeIcon } from "./dom-utility"
-import { displayDueDate } from "./date-displayer";
+import { makeElement, makeIcon } from "../display_utility/dom-utility"
+import { displayDueDate } from "../display_utility/date-displayer";
 import { findLocalItems } from "../logic/storage";
 
 export { FolderView, TaskCard, buttonNewTask }

@@ -1,4 +1,4 @@
-import { makeElement, makeIcon } from "./dom-utility"
+import { makeElement, makeIcon } from "../display_utility/dom-utility"
 
 export { makeDashboard, FolderCard, buttonNewFolder }
 
