@@ -1,4 +1,4 @@
-import { setPageContent } from "./page-container";
+import { Page } from "./page-container";
 
 export { addTab }
 
@@ -13,7 +13,7 @@ function addTab( textContent, domReference ){
   tab.dataset.tabIndex = navigationHistory.length
 
   tab.addEventListener('click', () => {
-    setPageContent( domReference )
+    Page.setContent( domReference )
     clearHistoryAfter( tab.dataset.tabIndex )
     clearNavBarAfter( tab.dataset.tabIndex )
   })

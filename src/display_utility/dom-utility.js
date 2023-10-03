@@ -1,4 +1,4 @@
-export { makeElement, makeIcon, Modal }
+export { makeElement, makeIcon, Modal, Div, Img, Span }
 
 function makeElement( obj ){
   if(!obj.hasOwnProperty('type')) return
@@ -10,6 +10,24 @@ function makeElement( obj ){
     output[key] = obj[key];
   }
 
+  return output
+}
+
+function Div( classList ){
+  const output = document.createElement('div');
+  output.classList = classList;
+  return output
+}
+
+function Img( src ){
+  const output = document.createElement('img');
+  output.src = src;
+  return output
+}
+
+function Span( textContent ){
+  const output = document.createElement('span');
+  output.textContent = textContent;
   return output
 }
 

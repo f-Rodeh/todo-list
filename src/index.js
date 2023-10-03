@@ -1,4 +1,4 @@
-import { loadPage, setPageContent } from "./display_utility/page-container";
+import { Page } from "./display_utility/page-container";
 import { buttonNewFolder, makeDashboard, FolderCard } from "./pages/dashboard";
 import { FolderView, TaskCard, buttonNewTask } from "./pages/folder";
 import { makeTaskView } from "./pages/task";
@@ -7,13 +7,13 @@ import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./d
 import { AppStorage } from "./logic/storage";
 import { Folder, Task } from "./logic/models";
 
-loadPage()
+Page.build()
 
 let folders = AppStorage.getFolders()
 let currentFolder;
 
 const dashboard = makeDashboard(folders)
-setPageContent( dashboard )
+Page.setContent( dashboard )
 addTab( 'My Folders', dashboard )
 
 const folderCards = document.querySelectorAll('.folder');
@@ -43,7 +43,7 @@ function addFolderListener( folderCard ){
 
 function openFolderView( folder ){
   const folderView = FolderView( folder );
-  setPageContent( folderView )
+  Page.setContent( folderView )
   addTab(folder.title, folderView);
 
   setTaskCardListeners();
@@ -51,7 +51,7 @@ function openFolderView( folder ){
 
 function openTaskView( task ){
   const taskView = makeTaskView( task );
-  setPageContent( taskView )
+  Page.setContent( taskView )
   addTab( task.title, taskView )
 }
 

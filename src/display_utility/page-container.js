@@ -1,30 +1,22 @@
-import { makeElement } from "./dom-utility";
-export { loadPage, setPageContent }
+import { Div, Img, Span, makeElement } from "./dom-utility";
+export { Page }
 
 const header = makeElement({type: 'header'})
 
-const logoContainer = document.createElement('div')
-logoContainer.classList.add('logo-container')
-logoContainer.addEventListener('click', () => location.reload()) // TODO: change dom to home instead of reloading everything
-
-logoContainer.append(
-  makeElement({
-    type: 'img',
-    src: 'https://img.logoipsum.com/246.svg'
-  }),
-  makeElement({
-    type: 'span', 
-    textContent: 'TO DEW'
-  })
+const Logo = Div('logo-container')
+Logo.addEventListener('click', () => location.reload())
+Logo.append(
+  Img('https://img.Logoipsum.com/246.svg'),
+  Span('TO DEW')
 )
 
-header.append(logoContainer)
+header.append(Logo)
 
 const navBar = makeElement({type: 'nav'});
 
 let main = makeElement({type: 'main'});
 
-function loadPage() {
+function build() {
   document.body.append(
     header,
     navBar,
@@ -32,7 +24,12 @@ function loadPage() {
   )
 }
 
-function setPageContent( element ) {
+function setContent( element ) {
   main.replaceWith( element )
   main = element
+}
+
+const Page = {
+  build,
+  setContent
 }
