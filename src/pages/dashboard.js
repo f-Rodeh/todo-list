@@ -1,4 +1,4 @@
-import { makeElement, makeIcon } from "../display_utility/dom-utility"
+import { makeElement, Icon } from "../display_utility/dom-utility"
 
 export { makeDashboard, FolderCard, buttonNewFolder }
 
@@ -8,7 +8,7 @@ const buttonNewFolder = makeElement({
 })
 
 buttonNewFolder.append(
-  makeIcon('add-outline'),
+  Icon('add-outline'),
   makeElement({
     type: 'span',
     textContent: 'New Folder',
@@ -43,7 +43,7 @@ function FolderCard( folder ){
   const icons = document.createElement('div');
   icons.classList.add('icons');
 
-  const trashIcon = makeIcon('trash-outline');
+  const trashIcon = Icon('trash-outline');
   icons.append(trashIcon)
 
   output.append(

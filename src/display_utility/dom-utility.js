@@ -1,4 +1,4 @@
-export { makeElement, makeIcon, Modal, Div, Img, Span }
+export { makeElement, Icon, Modal, Div, Img, Span }
 
 function makeElement( obj ){
   if(!obj.hasOwnProperty('type')) return
@@ -31,7 +31,7 @@ function Span( textContent ){
   return output
 }
 
-function makeIcon( name ){
+function Icon( name ){
   if(!name) throw new Error('No icon name provided')
 
   const output = document.createElement('ion-icon');

@@ -1,4 +1,4 @@
-import { makeElement, makeIcon } from "../display_utility/dom-utility"
+import { makeElement, Icon } from "../display_utility/dom-utility"
 import { displayDueDate } from "../display_utility/date-displayer";
 
 export { FolderView, TaskCard, buttonNewTask }
@@ -7,7 +7,7 @@ const buttonNewTask = document.createElement('div');
 buttonNewTask.classList.add('new-task', 'card');
 
 buttonNewTask.append(
-  makeIcon('add-outline'),
+  Icon('add-outline'),
   makeElement({
     type: 'span',
     textContent: 'New Task',
@@ -62,7 +62,7 @@ function TaskCard( task ) {
   const icons = document.createElement('div');
   icons.classList.add('icons');
 
-  const trashIcon = makeIcon('trash-outline');
+  const trashIcon = Icon('trash-outline');
   icons.append(trashIcon)
 
   output.append(
@@ -90,7 +90,7 @@ function displayPriority( priority ){
   output.style.backgroundColor = 'var(--sand)'
   
   for (let i = 0; i < priority; i++) {
-    const priorityIcon = makeIcon('alert-circle-outline');
+    const priorityIcon = Icon('alert-circle-outline');
     output.append(priorityIcon)
   }
   return output

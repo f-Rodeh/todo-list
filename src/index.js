@@ -12,60 +12,20 @@ Page.build()
 let folders = AppStorage.getFolders()
 let currentFolder;
 
-const dashboard = makeDashboard(folders)
+const dashboard = makeDashboard( folders )
 Page.setContent( dashboard )
 addTab( 'My Folders', dashboard )
 
 const folderCards = document.querySelectorAll('.folder');
-folderCards.forEach((folder) => {
-  addFolderListener( folder )
+folderCards.forEach((card) => { 
+  card.addEventListener('click', ()=>{
+    const id = card.dataset.uid
+    currentFolder = findFolderById(id)
+    openFolder( currentFolder )
+  })
 })
 
-function setTaskCardListeners(){
-  let taskCards = document.querySelectorAll('.task');
-  taskCards.forEach((card) => addTaskListener( card ))
-}
-
-function addTaskListener( taskCard ){
-  taskCard.addEventListener('click', () => {
-    const _task = findTaskById( taskCard.dataset.uid )
-    openTaskView( _task )
-  })
-}
-
-function addFolderListener( folderCard ){
-  folderCard.addEventListener('click', () => {
-    const id = folderCard.dataset.uid
-    currentFolder = findFolderById(id)
-    openFolderView( currentFolder )
-  })
-}
-
-function openFolderView( folder ){
-  const folderView = FolderView( folder );
-  Page.setContent( folderView )
-  addTab(folder.title, folderView);
-
-  setTaskCardListeners();
-}
-
-function openTaskView( task ){
-  const taskView = makeTaskView( task );
-  Page.setContent( taskView )
-  addTab( task.title, taskView )
-}
-
-function findFolderById( id ){
-  return folders.find((element) => element.uid === id)
-}
-
-function findTaskById( id ){
-  if(!currentFolder) throw new Error('No folder currently open')
-  const tasks = currentFolder.getTasks()
-  return tasks.find((element) => element.uid === id)
-}
-
-const FolderForm = {title: TextInput('Title')}
+const FolderForm = { title: TextInput('Title') }
 const TaskForm = {
   title: TextInput('Title', 32),
   description: TextInput('Description', 280),
@@ -82,10 +42,7 @@ function makeNewFolder(){
   form.setMainAction(() => {
     const answers = getFormObject(form.content)
     const folder = Folder(answers.title)
-    const card = FolderCard(folder)
-    folders.push(folder)
-    dashboard.append(card)
-    addFolderListener(card)
+    addFolder( folder )
     form.dismiss();
   })
 }
@@ -95,12 +52,54 @@ function makeNewTask(){
 
   form.setMainAction(() => {
     const answers = getFormObject(form.content)
-    const list = document.querySelector('#task-list')
     const task = Task( answers.title, answers.description, answers.dueDate, answers.priority );
-    currentFolder.addTask( task )
-    const card = TaskCard( task );
-    list.append( card )
-    addTaskListener( card )
+    addTask(task)
     form.dismiss()
   })
+}
+
+function updateTasks(){
+  const taskCards = document.querySelectorAll('.task');
+  taskCards.forEach((card) => card.addEventListener('click', ()=> {
+    const _task = findTaskById( card.dataset.uid )
+    openTask( _task )
+  }))
+}
+
+function openFolder( folder ){
+  const folderView = FolderView( folder );
+  Page.setContent( folderView )
+  addTab(folder.title, folderView);
+
+  updateTasks();
+}
+
+function openTask( task ){
+  const taskView = makeTaskView( task );
+  Page.setContent( taskView )
+  addTab( task.title, taskView )
+}
+
+function findFolderById( id ){
+  return folders.find((element) => element.uid === id)
+}
+
+function findTaskById( id ){
+  if(!currentFolder) throw new Error('No folder currently open')
+  const tasks = currentFolder.getTasks()
+  return tasks.find((element) => element.uid === id)
+}
+
+function addFolder( folder ){
+  const card = FolderCard(folder)
+  dashboard.append(card)
+  card.addEventListener('click', () => { openFolder(folder) })
+  folders.push(folder)
+}
+
+function addTask( task ){
+  const card = TaskCard( task )
+  document.querySelector('#task-list').append( card )
+  card.addEventListener('click', () => { openTask( task ) })
+  currentFolder.addTask( task )
 }

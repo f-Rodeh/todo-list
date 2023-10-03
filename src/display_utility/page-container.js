@@ -1,8 +1,6 @@
 import { Div, Img, Span, makeElement } from "./dom-utility";
 export { Page }
 
-const header = makeElement({type: 'header'})
-
 const Logo = Div('logo-container')
 Logo.addEventListener('click', () => location.reload())
 Logo.append(
@@ -10,6 +8,7 @@ Logo.append(
   Span('TO DEW')
 )
 
+const header = makeElement({type: 'header'})
 header.append(Logo)
 
 const navBar = makeElement({type: 'nav'});
