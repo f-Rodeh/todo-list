@@ -20,8 +20,8 @@ const folderCards = document.querySelectorAll('.folder');
 folderCards.forEach((card) => { 
   card.addEventListener('click', ()=>{
     const id = card.dataset.uid
-    currentFolder = findFolderById(id)
-    openFolder( currentFolder )
+    const _folder = findFolderById(id)
+    openFolder( _folder )
   })
 })
 
@@ -67,6 +67,7 @@ function updateTasks(){
 }
 
 function openFolder( folder ){
+  currentFolder = folder;
   const folderView = FolderView( folder );
   Page.setContent( folderView )
   addTab(folder.title, folderView);
@@ -98,6 +99,8 @@ function addFolder( folder ){
 }
 
 function addTask( task ){
+  if(!currentFolder) throw new Error('No folder currently open')
+
   const card = TaskCard( task )
   document.querySelector('#task-list').append( card )
 
