@@ -40,9 +40,10 @@ function TaskManager(){
     localStorage.setItem(`FOLDER_${this.uid}`, JSON.stringify(this))
   }
 
-  function removeTask(){
-    console.log('remove task from folder.tasks') // this.tasks.remove
-    console.log('remove task from localStorage') // localStorage.remove
+  function removeTask( id ){
+    const index = this.tasks.findIndex( task => task.uid === id );
+    this.tasks.splice( index, 1 )
+    localStorage.setItem(`FOLDER_${this.uid}`, JSON.stringify(this))
   }
 
   return {

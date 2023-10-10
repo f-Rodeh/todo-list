@@ -60,10 +60,11 @@ function makeNewTask(){
 
 function updateTasks(){
   const taskCards = document.querySelectorAll('.task');
-  taskCards.forEach((card) => card.addEventListener('click', ()=> {
-    const _task = findTaskById( card.dataset.uid )
-    openTask( _task )
-  }))
+  taskCards.forEach((card) => {
+    card.addEventListener('click', () => { openTask( card.dataset.id ) })
+    const iconDelete = card.querySelector('.delete')
+    iconDelete.addEventListener('click', () => { currentFolder.removeTask( card.dataset.uid )})
+  })
 }
 
 function openFolder( folder ){
@@ -75,7 +76,8 @@ function openFolder( folder ){
   updateTasks();
 }
 
-function openTask( task ){
+function openTask( id ){
+  const task = findTaskById( id )
   const taskView = makeTaskView( task );
   Page.setContent( taskView )
   addTab( task.title, taskView )
@@ -105,13 +107,8 @@ function addTask( task ){
   document.querySelector('#task-list').append( card )
 
   const iconDelete = card.querySelector('.delete');
-  iconDelete.addEventListener('click', () => { console.log('a')})
+  iconDelete.addEventListener('click', () => { currentFolder.removeTask( task.uid )} )
   
   card.addEventListener('click', () => { openTask( task ) })
   currentFolder.addTask( task )
-}
-
-function deleteTask(){
-  console.log('aaaaaaaa')
-  currentFolder.removeTask();
 }
