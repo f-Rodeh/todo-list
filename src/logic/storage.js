@@ -2,6 +2,10 @@ import { StoredFolder } from "./models"
 
 export { AppStorage }
 
+function removeFolder( id ){
+  localStorage.removeItem(`FOLDER_${id}`)
+}
+
 function getFolders(){
   return findLocalItems( 'FOLDER_' ).map( folder => {
     const data = JSON.parse( folder )

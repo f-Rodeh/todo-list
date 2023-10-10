@@ -63,7 +63,12 @@ function TaskCard( task ) {
   icons.classList.add('icons');
 
   const trashIcon = Icon('trash-outline');
+  trashIcon.classList.add('delete')
   icons.append(trashIcon)
+  trashIcon.addEventListener('click', (e) => {
+    output.remove()
+    e.stopPropagation()
+  })
 
   output.append(
     title,

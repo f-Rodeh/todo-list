@@ -40,11 +40,15 @@ function TaskManager(){
     localStorage.setItem(`FOLDER_${this.uid}`, JSON.stringify(this))
   }
 
-  function removeTask(){}
+  function removeTask(){
+    console.log('remove task from folder.tasks') // this.tasks.remove
+    console.log('remove task from localStorage') // localStorage.remove
+  }
 
   return {
     getTasks,
-    addTask
+    addTask,
+    removeTask
   }
 }
 
@@ -70,7 +74,7 @@ function DueDateManager( initialDueDate ){
 
     if( dateIsValid(newDate) ) {
       dueDate = newDate
-    } else console.warn('Date not set: Invalid date');
+    }
   }
   
   function getDueDate(){ return dueDate }

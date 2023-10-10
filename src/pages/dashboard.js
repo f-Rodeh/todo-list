@@ -44,7 +44,14 @@ function FolderCard( folder ){
   icons.classList.add('icons');
 
   const trashIcon = Icon('trash-outline');
+  trashIcon.classList.add('delete')
   icons.append(trashIcon)
+
+  trashIcon.addEventListener('click', (e) => {
+    output.remove()
+    localStorage.removeItem(`FOLDER_${folder.uid}`)
+    e.stopPropagation()
+  })
 
   output.append(
     makeElement({

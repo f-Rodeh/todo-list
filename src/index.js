@@ -100,6 +100,15 @@ function addFolder( folder ){
 function addTask( task ){
   const card = TaskCard( task )
   document.querySelector('#task-list').append( card )
+
+  const iconDelete = card.querySelector('.delete');
+  iconDelete.addEventListener('click', () => { console.log('a')})
+  
   card.addEventListener('click', () => { openTask( task ) })
   currentFolder.addTask( task )
+}
+
+function deleteTask(){
+  console.log('aaaaaaaa')
+  currentFolder.removeTask();
 }
