@@ -6,6 +6,7 @@ import { addTab } from "./display_utility/tab-navigator";
 import { DateInput, InputForm, NumberInput, TextInput, getFormObject } from "./display_utility/input-prompter";
 import { AppStorage } from "./logic/storage";
 import { Folder, Task } from "./logic/models";
+import './style.css';
 
 Page.build()
 
