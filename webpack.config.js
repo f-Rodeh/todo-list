@@ -6,5 +6,20 @@ const path = require('path');
     filename: 'main.js',
      path: path.resolve(__dirname, 'dist'),
    },
-  devtool: 'inline-source-map'
+   rules: [
+    {
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.(jpg|jpeg|png|svg|gif)$/i,
+      type: 'asset/resource'
+    },
+    {
+      test: /\.(woff|woff2)$/i,
+      type: 'asset/resource'
+    }
+   ],
+  // devtool: 'inline-source-map',
+  mode: "production"
  };
